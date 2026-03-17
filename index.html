@@ -3,60 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi PWA con Google Sheets</title>
-    <link rel="manifest" href="manifest.json">
+    <title>PWA Sheets Experiment</title>
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; padding: 20px; background: #f0f2f5; }
-        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
-        input, button { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        button { background: #007bff; color: white; border: none; cursor: pointer; }
-        button:hover { background: #0056b3; }
+        body { font-family: system-ui, -apple-system, sans-serif; max-width: 500px; margin: auto; padding: 20px; background: #f4f7f6; }
+        .box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px #00000010; margin-bottom: 20px; }
+        input { width: 100%; padding: 10px; margin: 5px 0 15px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #34a853; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
+        .mensaje-item { border-bottom: 1px solid #eee; padding: 10px 0; }
+        .mensaje-item:last-child { border: none; }
+        small { color: #888; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>Enviar Datos</h2>
-    <input type="text" id="nombre" placeholder="Tu nombre">
-    <input type="text" id="mensaje" placeholder="Tu mensaje">
-    <button onclick="enviarDatos()">Enviar a Google Sheets</button>
-    <p id="estado"></p>
-</div>
+    <div class="box">
+        <h3>Nueva Entrada</h3>
+        <input type="text" id="nombre" placeholder="Nombre">
+        <input type="text" id="mensaje" placeholder="Mensaje">
+        <button onclick="enviar()">Guardar en Sheets</button>
+    </div>
+
+    <div class="box">
+        <h3>Registros Recientes</h3>
+        <div id="lista">Cargando datos...</div>
+    </div>
 
 <script>
-    async function enviarDatos() {
-        const URL_SCRIPT = 'https://script.google.com/macros/s/AKfycbxiyzICtAmxHlDWx2PNALdLdn86mQhJeKi8NWGsvppY9KLiKpX0xv7L4Y8trf22S9WBiA/exec';
-        const nombre = document.getElementById('nombre').value;
-        const mensaje = document.getElementById('mensaje').value;
-        const estado = document.getElementById('estado');
+    const URL_API = "TU_URL_DE_APPS_SCRIPT_AQUI";
 
-        estado.innerText = "Enviando...";
-
-        const datos = { nombre, mensaje };
-
+    // Función para LEER datos
+    async function cargarDatos() {
         try {
-            // Usamos mode: 'no-cors' para evitar bloqueos simples de navegador al probar
-            await fetch(URL_SCRIPT, {
-                method: 'POST',
-                mode: 'no-cors', 
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(datos)
-            });
-            estado.innerText = "¡Datos enviados con éxito!";
-            document.getElementById('nombre').value = '';
-            document.getElementById('mensaje').value = '';
-        } catch (error) {
-            estado.innerText = "Error al enviar.";
-            console.error(error);
+            const response = await fetch(URL_API);
+            const datos = await response.json();
+            const contenedor = document.getElementById('lista');
+            contenedor.innerHTML = datos.map(item => `
+                <div class="mensaje-item">
+                    <strong>${item.nombre}</strong>: ${item.mensaje}<br>
+                    <small>${new Date(item.fecha).toLocaleString()}</small>
+                </div>
+            `).join('') || "No hay mensajes.";
+        } catch (e) {
+            document.getElementById('lista').innerText = "Error al cargar.";
         }
     }
 
-    // Registro del Service Worker para PWA
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('sw.js');
+    // Función para ENVIAR datos
+    async function enviar() {
+        const nombre = document.getElementById('nombre').value;
+        const mensaje = document.getElementById('mensaje').value;
+        
+        await fetch(URL_API, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify({ nombre, mensaje })
         });
+
+        alert("¡Enviado! (Recarga para ver cambios)");
+        location.reload(); // Recargamos para ver el nuevo dato
     }
+
+    // Cargar al iniciar
+    window.onload = cargarDatos;
 </script>
 </body>
 </html>
