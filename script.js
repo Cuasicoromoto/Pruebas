@@ -48,7 +48,7 @@ const oracionesTexto = {
     'Angelus': `<p class="jaculatoria texto-normal"><b>V.</b> El ángel del Señor anunció a María. <br><b>R.</b> <i>Y concibió por obra y gracia del Espíritu Santo.</i></p> <br><p>Dios te salve, María...</p><br> <p class="jaculatoria"><b>V.</b> He aquí la esclava del Señor. <br><b>R.</b> <i>Hágase en mí según tu palabra.</i></p> <br><p>Dios te salve, María...</p><br><p class="jaculatoria"><b>V.</b> Y el Verbo se hizo carne. <br><b>R.</b> <i>Y habitó entre nosotros.</i> </p><br><p>Dios te salve, María...</p><br><p class="jaculatoria"><b>V.</b> Ruega por nosotros, santa Madre de Dios. <br><b>R.</b> <i>Para que seamos dignos de alcanzar las divinas promesas de Nuestro Señor Jesucristo.</i></p><br><p><b>V.</b> Infunde, Señor, tu gracia en nuestras almas, para que los que por el anuncio del ángel hemos conocido la Encarnación de tu Hijo Jesucristo, por los méritos de su Pasión y su Cruz lleguemos a la gloria de la Resurrección. Por el mismo Jesucristo, nuestro Señor. <br><br><b>R.</b> <i>Amén.</i> <br><br>Gloria al Padre... (tres veces)</p>`,
     'Acuérdate': `<p>Acuérdate, oh piadosísima Virgen María, que jamás se ha oído decir que ninguno de los que han acudido a tu protección, implorando tu asistencia y reclamando tu socorro, haya sido abandonado de ti.<br><br>Animado con esta contianza, a ti también acudo, oh Madre, Virgen de las vírgenes, aunque gimiendo bajo el peso de mis pecados, me atrevo a comparecer ante tu presencia soberana.<br><br>No deseches mis humildes súplicas, oh Madre del Verbo divino, antes bien, escúchalas y acógelas benignamente. <br><br>Amén.</p>`,
     'Tu pureza': `<p>Bendita sea tu pureza <br>y eternamente lo sea, <br>pues todo un Dios se recrea <br>en tan graciosa belleza. <br><br>A ti, celestial princesa, <br>Virgen Sagrada María, <br>te ofrezco en este día <br>alma, vida y corazón. <br><br>Mírame con compasión <br>y no me dejes, madre mía.`,
-    'A la Sagrada Familia': `<p>JESÚS, Hijo de Dios e Hijo de María, bendice a nuestra familia. Inspira bondadosamente en nosotros la unidad, la paz y el amor mutuo que tú encontraste en Tu propia familia en la pequeña aldea de Nazaret. <br><br>MARÍA, Madre de Jesús y Nuestra Madre, sustenta a nuestra familia con tu fe y tu amor. Consérvanos cerca de tu Hijo, Jesús, en todas nuestras alegrías y en nuestras penas. <br><br>JOSÉ, Padre adoptivo de Jesús, guardián y esposo de María, protege a nuestra familia del peligro. Auxílianos en todos los momentos de desánimo y ansiedad. <br><br>SAGRADA FAMILIA DE NAZARET, haz a nuestra familia una contigo. Ayúdanos a ser instrumentos de paz. Concédenos que el amor, fortalecido por la gracia, pruebe ser más fuerte que las debididades y las pruebas que nuestra familia a veces atraviesa. Que siempre tengamos a Dios en el centro de nuestros corazones y hogares hasta que todos seamos una sola familia, feliz y en paz en nuestro verdadero hogar contigo. <br><br>Amén.</p>`,
+    'A la Sagrada Familia': `<p>JESÚS, Hijo de Dios e Hijo de María, bendice a nuestra familia. Inspira bondadosamente en nosotros la unidad, la paz y el amor mutuo que tú encontraste en Tu propia familia en la pequeña aldea de Nazaret. <br><br>MARÍA, Madre de Jesús y Nuestra Madre, sustenta a nuestra familia con tu fe y tu amor. Consérvanos cerca de tu Hijo, Jesús, en todas nuestras alegrías y en nuestras penas. <br><br>JOSÉ, Padre adoptivo de Jesús, guardián y esposo de María, protege a nuestra familia del peligro. Auxílianos en todos los momentos de desánimo y ansiedad. <br><br>SAGRADA FAMILIA DE NAZARET, haz a nuestra familia una contigo. Ayúdanos a ser instrumentos de paz. Concédenos que el amor, fortalecido por la gracia, pruebe ser más fuerte que las debilidades y las pruebas que nuestra familia a veces atraviesa. Que siempre tengamos a Dios en el centro de nuestros corazones y hogares hasta que todos seamos una sola familia, feliz y en paz en nuestro verdadero hogar contigo. <br><br>Amén.</p>`,
     'A San José': `
         <h3>1. Custodio del Redentor</h3><p class="texto-normal">Salve, custodio del Redentor<br>y esposo de la Virgen María.<br><br>A ti Dios confió a su Hijo,<br>en ti María depositó su confianza,<br>contigo Cristo se forjó como hombre.<br><br>Oh, bienaventurado José,<br>muéstrate padre también a nosotros<br>y guíanos en el camino de la vida.<br><br>Concédenos gracia, <br>misericordia y valentía,<br>y defiéndenos de todo mal. Amén.</p>
         <br><h3>2. Custodio y padre</h3><p>Custodio y padre de vírgenes, San José, a cuya fiel custodia fueron encomendadas la misma inocencia. Cristo Jesús y la Virgen de las vírgenes María: por estas dos queridísimas prendas, Jesús y María, te ruego y te suplico me alcances que, preservado de toda impureza, sirva siempre con alma limpia, corazón puro y cuerpo casto a Jesús y a María. Amén.</p>
@@ -68,22 +68,14 @@ const oracionesTexto = {
         <p class="jaculatoria">Dios, Padre celestial, <br>Dios, Hijo, Redentor del mundo, <br>Dios, Espíritu Santo, <br>Santísima Trinidad, un solo Dios,</p>         
         <br><p><i>(Ruega por nosotros)</i></p> 
         <p class="jaculatoria">Santa María,
-        <br>San José,
-        <br>Ilustre descendiente de David,    
-        <br>Luz de los Patriarcas, 
-        <br>Esposo de la Madre de Dios, <br>Casto guardián de la Virgen, <br>Padre nutricio del Hijo de Dios, <br>Celoso defensor de Cristo, <br>Jefe de la Sagrada Familia, <br>José, justísimo, ruega por nosotros.   
-        <br>José, castísimo, <br>José, prudentísimo, <br>José, valentísimo, <br>José, fidelísimo, <br>Espejo de paciencia, <br>Amante de la pobreza, <br>Modelo de trabajadores, <br>Gloria de la vida doméstica, ruega por nosotros.   
-<br>Custodio de Vírgenes, <br>Sostén de las familias, <br>Consuelo de los desgraciados, <br>Esperanza de los enfermos, <br>Patrón de los moribundos, ruega por nosotros.   
-Terror de los demonios, ruega por nosotros.   
-Protector de la Santa Iglesia, ruega por nosotros.   
-Cordero de Dios, que quitas los pecados del mundo: perdónanos, Señor.
-Cordero de Dios, que quitas los pecados del mundo: escúchanos, Señor,
-Cordero de Dios, que quitas los pecados del mundo: ten misericordia de nosotros.
-V.- Le estableció señor de su casa.
-R.- Y jefe de toda su hacienda.
+        <br>San José,<br>Ilustre descendiente de David, <br>Luz de los Patriarcas, <br>Esposo de la Madre de Dios, <br>Casto guardián de la Virgen, <br>Padre nutricio del Hijo de Dios, <br>Celoso defensor de Cristo, <br>Jefe de la Sagrada Familia, <br>José, justísimo, <br>José, castísimo, <br>José, prudentísimo, <br>José, valentísimo, <br>José, fidelísimo, <br>Espejo de paciencia, <br>Amante de la pobreza, <br>Modelo de trabajadores, <br>Gloria de la vida doméstica, <br>Custodio de Vírgenes, <br>Sostén de las familias, <br>Consuelo de los desgraciados, <br>Esperanza de los enfermos, <br>Patrón de los moribundos, <br>Terror de los demonios, <br>Protector de la Santa Iglesia, 
+<br><br>Cordero de Dios, que quitas los pecados del mundo, <br><i>perdónanos, Señor.</i>
+<br><br>Cordero de Dios, que quitas los pecados del mundo, <br><i>escúchanos, Señor,</i>
+<br><br>Cordero de Dios, que quitas los pecados del mundo, <br><i>ten misericordia de nosotros.</i></p>
+<br><p><i>V.</i> Le estableció señor de su casa.
+<br><i>R.</i> Y jefe de toda su hacienda.
  
-Oremos: Oh Dios, que en tu inefable providencia, te dignaste elegir a San José por Esposo de tu Santísima Madre: concédenos, te rogamos, que merezcamos tener por intercesor en el cielo al que veneramos como protector en la tierra. Tú que vives y reinas por los siglos de los siglos. Amén
-   </p> `,
+<br><br><i>Oremos:</i> Oh Dios, que en tu inefable providencia, te dignaste elegir a San José por Esposo de tu Santísima Madre: concédenos, te rogamos, que merezcamos tener por intercesor en el cielo al que veneramos como protector en la tierra. Tú que vives y reinas por los siglos de los siglos.</p> `,
 
     '<!-- Novenas -->': ``,
     'Novena a la Virgen de Coromoto': `
@@ -322,65 +314,68 @@ const diasNovenaSanJose = [{
 }];
 
 const datos = {
-    'Avisos Cuasiparroquiales': `
-        <div class="encabezado-mes">Marzo 2026</div>
-        <div class="grupo-timeline">
-            <div class="aviso-fila">
-                <div class="aviso-fecha"><b>12</b><span>Jue</span></div>
-                <div class="aviso-contenido"><h4>Novena de San José</h4><p><b>Capilla San José - </b>La novena preparatoria de San José es un recorrido de evangelización que realizarán los <i>Amigos de San José</i> desde el sector Clavelito hasta el sector el Mango, en la comunidad de Guaremal, hasta el día de la procesión a la capilla.</p></div>
+    'Avisos Cuasiparroquiales': ``,
+    /*
+    <div class="encabezado-mes">Marzo 2026</div>
+    <div class="grupo-timeline">
+        <div class="aviso-fila">
+            <div class="aviso-fecha"><b>12</b><span>Jue</span></div>
+            <div class="aviso-contenido"><h4>Novena de San José</h4><p><b>Capilla San José - </b>La novena preparatoria de San José es un recorrido de evangelización que realizarán los <i>Amigos de San José</i> desde el sector Clavelito hasta el sector el Mango, en la comunidad de Guaremal, hasta el día de la procesión a la capilla.</p></div>
+        </div>
+        <div class="aviso-fila">
+            <div class="aviso-fecha"><b>19</b><span>Jue</span></div>
+            <div class="aviso-contenido"><h4>Solemnidad de San José</h4><p><b>Capilla San José - </b>Celebración por la solemnidad de San José; patrono de la Iglesia Universal, de la comunidad de Guaremal y de la sede principal de la Cuasiparroquia.</p></div>
+        </div>
+        <div class="aviso-fila">
+            <div class="aviso-fecha"><b>21</b><span>Sáb</span></div>
+            <div style="display: flex; gap: 1rem; flex-direction: column;">
+            <div class="aviso-contenido"><h4>Procesión de San José</h4><p><b>Capilla San José - </b>Procesión en honor a San José como patrono de la comunidad de Guaremal; desde el sector "El Mango" hasta la Capilla San José, a las 6:00PM.</p></div>
+            <div class="aviso-contenido"><h4>Encuentro vicarial de catequistas</h4><p><b>Zona 1 - </b>Procesión en honor a San José como patrono de la comunidad de Guaremal; desde el sector "El Mango" hasta la Capilla San José, a las 6:00PM.</p></div>
             </div>
-            <div class="aviso-fila">
-                <div class="aviso-fecha"><b>19</b><span>Jue</span></div>
-                <div class="aviso-contenido"><h4>Solemnidad de San José</h4><p><b>Capilla San José - </b>Celebración por la solemnidad de San José; patrono de la Iglesia Universal, de la comunidad de Guaremal y de la sede principal de la Cuasiparroquia.</p></div>
-            </div>
-            <div class="aviso-fila">
-                <div class="aviso-fecha"><b>21</b><span>Sáb</span></div>
-                <div style="display: flex; gap: 1rem; flex-direction: column;">
-                <div class="aviso-contenido"><h4>Procesión de San José</h4><p><b>Capilla San José - </b>Procesión en honor a San José como patrono de la comunidad de Guaremal; desde el sector "El Mango" hasta la Capilla San José, a las 6:00PM.</p></div>
-                <div class="aviso-contenido"><h4>Encuentro vicarial de catequistas</h4><p><b>Zona 1 - </b>Procesión en honor a San José como patrono de la comunidad de Guaremal; desde el sector "El Mango" hasta la Capilla San José, a las 6:00PM.</p></div>
-                </div>
-            </div>
-            <div class="aviso-fila">
-                <div class="aviso-fecha"><b>22</b><span>Dom</span></div>
-                <div class="aviso-contenido"><h4>Fiesta de San José</h4><p><b>Capilla San José - </b><br><i>• 10:30AM </i> - Actividades recreativas. <br><i>• 12:00PM </i> - Celebración litúrgica.<br><i>• 01:00PM </i> - Sopa.<br><i>• 02:00PM </i> - Bingo.</p></div>
-            </div>
-            
-            <!--
-            <div class="aviso-fila">
-                <div class="aviso-fecha"><b>28</b><span>Sáb</span></div>
-                <div class="aviso-contenido"><h4>Bendición de Ramos</h4><p><b>Capillas filiales - </b></p></div>
-            </div>
-            <div class="aviso-fila">
-                <div class="aviso-fecha"><b>29</b><span>Dom</span></div>
-                <div class="aviso-contenido"><h4>Domingo de Ramos</h4><p><b>Capilla San José - </b></p></div>
-            </div>
-            <div class="aviso-fila">
-                <div class="aviso-fecha"><b>30</b><span>Lun</span></div>
-                <div class="aviso-contenido"><h4>Misa Crismal</h4><p><b>Santa Iglesia Catedral - </b></p></div>
-            </div>
+        </div>
+        <div class="aviso-fila">
+            <div class="aviso-fecha"><b>22</b><span>Dom</span></div>
+            <div class="aviso-contenido"><h4>Fiesta de San José</h4><p><b>Capilla San José - </b><br><i>• 10:30AM </i> - Actividades recreativas. <br><i>• 12:00PM </i> - Celebración litúrgica.<br><i>• 01:00PM </i> - Sopa.<br><i>• 02:00PM </i> - Bingo.</p></div>
         </div>
         
-        <div class="encabezado-mes">Abril 2026</div>
-        <div class="grupo-timeline">
-            <div class="aviso-fila">
-                <div class="aviso-fecha"><b>01</b><span>Mié</span></div>
-                <div class="aviso-contenido"><h4>Procesión del Nazareno</h4><p><b>Capillas filiales - </b></p></div>
-            </div>
-            <div class="aviso-fila">
-                <div class="aviso-fecha"><b>05</b><span>Dom</span></div>
-                <div class="aviso-contenido"><h4>Domingo de Resurrección</h4><p>¡Aleluya! Gran fiesta de la Pascua.</p></div>
-            </div>
-            <div class="aviso-fila">
-                <div class="aviso-fecha"><b>04</b><span>Sáb</span></div>
-                <div class="aviso-contenido"><h4>Liturgia Crismal</h4><p><b>Capilla San José - </b></p></div>
-            </div>
-            <div class="aviso-fila">
-                <div class="aviso-fecha"><b>25</b><span>Sáb</span></div>
-                <div class="aviso-contenido"><h4>Ordenación Episcopal</h4><p>Ordenación del presbítero Alberto Castillo</p></div>
-            </div>
+        <!--
+        <div class="aviso-fila">
+            <div class="aviso-fecha"><b>28</b><span>Sáb</span></div>
+            <div class="aviso-contenido"><h4>Bendición de Ramos</h4><p><b>Capillas filiales - </b></p></div>
         </div>
-        -->
-    `,
+        <div class="aviso-fila">
+            <div class="aviso-fecha"><b>29</b><span>Dom</span></div>
+            <div class="aviso-contenido"><h4>Domingo de Ramos</h4><p><b>Capilla San José - </b></p></div>
+        </div>
+        <div class="aviso-fila">
+            <div class="aviso-fecha"><b>30</b><span>Lun</span></div>
+            <div class="aviso-contenido"><h4>Misa Crismal</h4><p><b>Santa Iglesia Catedral - </b></p></div>
+        </div>
+    </div>
+    
+    <div class="encabezado-mes">Abril 2026</div>
+    <div class="grupo-timeline">
+        <div class="aviso-fila">
+            <div class="aviso-fecha"><b>01</b><span>Mié</span></div>
+            <div class="aviso-contenido"><h4>Procesión del Nazareno</h4><p><b>Capillas filiales - </b></p></div>
+        </div>
+        <div class="aviso-fila">
+            <div class="aviso-fecha"><b>05</b><span>Dom</span></div>
+            <div class="aviso-contenido"><h4>Domingo de Resurrección</h4><p>¡Aleluya! Gran fiesta de la Pascua.</p></div>
+        </div>
+        <div class="aviso-fila">
+            <div class="aviso-fecha"><b>04</b><span>Sáb</span></div>
+            <div class="aviso-contenido"><h4>Liturgia Crismal</h4><p><b>Capilla San José - </b></p></div>
+        </div>
+        <div class="aviso-fila">
+            <div class="aviso-fecha"><b>25</b><span>Sáb</span></div>
+            <div class="aviso-contenido"><h4>Ordenación Episcopal</h4><p>Ordenación del presbítero Alberto Castillo</p></div>
+        </div>
+    </div>
+    -->
+`,
+*/
+
     'Horarios': [{
         nombre: 'Capilla Nuestra <br>Señora del Carmen',
         frecuencia: 'Todos los sábados',
@@ -716,34 +711,39 @@ const datos = {
         <div class="caja-info">
             <h4><span class="material-icons-round">payments</span> Pago Móvil</h4>
             <div class="contenido-caja">
-                <div class="linea-horaria" style="font-family: monospace; font-size: 1rem;"><span>Bancamiga</span>0172</div>
-                <div class="linea-horaria" style="font-family: monospace; font-size: 1rem;"><span>RIF (comercio)</span style="font-family: monospace; font-size: 0.9rem;">504929760</div>
-                <div class="linea-horaria" style="font-family: monospace; font-size: 1rem;"><span>Teléfono</span style="font-family: monospace; font-size: 0.9rem;">04142711341</div>
+                <div class="linea-horaria"><span>Bancamiga</span>0172</div>
+                <div class="linea-horaria"><span>RIF (comercio)</span>504929760</div>
+                <div class="linea-horaria"><span>Teléfono</span>04142711341</div>
             </div>
         </div>
         <div class="caja-info">
             <h4><span class="material-icons-round">account_balance</span> Transferencia</h4>
             <div class="contenido-caja">
                 <p style="margin-bottom: 0;"><b>A nombre de:</b></p>
-                <p style="font-family: monospace; background: #eee; padding: 10px; border-radius: 5px; font-size: 1rem;">
-                    Cuasiparroquia Nuestra Señora de Coromoto
+                <p style="margin-top: 0; font-family: monospace; background: #eee; padding: 4px 8px; border-radius: 5px; font-size: 0.85rem;">
+                    Cuasiparroquia Nuestra <br>Señora de Coromoto
                 </p>
                 <p style="margin-bottom: 0;"><b>Cuenta Corriente:</b></p>
-                <p style="font-family: monospace; background: #eee; padding: 10px; border-radius: 5px; font-size: 1rem;">
+                <p style="margin-top: 0; font-family: monospace; background: #eee; padding: 4px 8px; border-radius: 5px; font-size: 0.85rem;">
                     0172-0131-0113-1578-4742
                 </p>
                 <p style="margin-bottom: 0;"><b>RIF:</b></p>
-                <p style="font-family: monospace; background: #eee; padding: 10px; border-radius: 5px; font-size: 1rem;">
+                <p style="margin-top: 0; font-family: monospace; background: #eee; padding: 4px 8px; border-radius: 5px; font-size: 0.85rem;">
                     J-504929760
                 </p>
             </div>
         </div>
         <div style="text-align: center;">
             <p style="margin-top: 10px; font-size: 0.75rem; color: #888;">
-                Por favor, enviar el comprobante a <br><span style="font-size:1rem;">cuasicoromoto@gmail.com</span>
+                Por favor, enviar el comprobante a <br><a href="mailto:cuasicoromoto@gmail.com" style="text-decoration: none; color: inherit;">
+                <span style="font-size:1rem; color: var(--vinotinto)">cuasicoromoto@gmail.com</span></a>
+            </p>
+            <p style="margin-top: 10px; font-size: 0.75rem; color: #888;">
+                También puedes comunicarte vía WhatsApp<br>
+                <a href="https://wa.me/584142711341" target="_blank" style="text-decoration: none; color: inherit;">
+                <span style="font-size:1rem; color: var(--vinotinto);">0414 2711341</span></a>
             </p>
         </div>
-
     `,
     'Recursos': `
         <div class="caja-info">
@@ -757,9 +757,6 @@ const datos = {
                 </a>
                 <a href="https://www.aciprensa.com/" target="_blank" class="enlace-web">
                     Aciprensa <span>Ir</span>
-                </a>
-                <a href="https://evangeli.net/evangelio" target="_blank" class="enlace-web">
-                    Evangeli <span>Ir</span>
                 </a>
             </div>
         </div>
@@ -816,6 +813,7 @@ window.cargarDiaNovena = (diaIndex, tipo) => {
 }
     ;
 
+/*
 function abrirPanel(titulo) {
     const contenido = datos[titulo];
     if (!contenido) {
@@ -826,6 +824,26 @@ function abrirPanel(titulo) {
     contenidoPanel.innerHTML = contenido;
     panel.classList.add('abierto');
     capaOscura.classList.add('activa');
+}
+*/
+
+async function abrirPanel(titulo) {
+    tituloPanel.innerText = titulo;
+    panel.classList.add('abierto');
+    capaOscura.classList.add('activa');
+
+    if (titulo === 'Avisos Cuasiparroquiales') {
+        // Llama a la nueva función si tocamos los avisos
+        await cargarAvisosDesdeAppsScript();
+    } else {
+        // Carga normal para el resto de apartados (horarios, devocionario, etc.)
+        const contenido = datos[titulo];
+        if (!contenido) {
+            console.error(`Contenido no encontrado para el título: ${titulo}`);
+            return;
+        }
+        contenidoPanel.innerHTML = contenido;
+    }
 }
 
 function abrirSubPanel(nombre) {
@@ -865,6 +883,156 @@ function cerrarTodo() {
     cerrarPanel();
     cerrarSubPanel();
 }
+
+
+// - - - -
+
+// Mapa para convertir el nombre del mes a número y poder hacer cálculos
+const mesesMapeo = {
+    "enero": 0, "febrero": 1, "marzo": 2, "abril": 3, "mayo": 4, "junio": 5,
+    "julio": 6, "agosto": 7, "septiembre": 8, "setiembre": 8, "octubre": 9, "noviembre": 10, "diciembre": 11
+};
+
+// Función que procesa los datos, filtra fechas pasadas y construye el HTML
+function renderizarAvisos(avisos) {
+    // 1. Obtenemos la fecha de HOY (y le quitamos las horas para comparar días exactos)
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+
+    // 2. Filtramos el listado dejando solo los eventos de hoy y del futuro
+    const avisosFuturos = avisos.filter(aviso => {
+        if (!aviso.mes || !aviso.dia) return false;
+
+        try {
+            // Separamos "Marzo 2026" en mes y año
+            const partesMes = aviso.mes.trim().toLowerCase().split(/\s+/);
+            const nombreMes = partesMes[0];
+            const anio = parseInt(partesMes[1]) || hoy.getFullYear(); // Si olvidas poner el año en el sheet, asume el actual
+
+            const mesNum = mesesMapeo[nombreMes];
+
+            // TRUCO: Extraemos el último número del día. 
+            // Si escribes "12 al 15", la app tomará el "15" y dejará de mostrarlo el día 16.
+            const numerosDia = aviso.dia.toString().match(/\d+/g);
+            const diaNum = numerosDia ? parseInt(numerosDia[numerosDia.length - 1]) : NaN;
+
+            // Si todo está correcto, calculamos si ya pasó
+            if (mesNum !== undefined && !isNaN(diaNum)) {
+                const fechaEvento = new Date(anio, mesNum, diaNum);
+                return fechaEvento >= hoy; // Devuelve TRUE si es hoy o en el futuro
+            }
+
+            // Si el formato es un texto libre (ej: "Por definir"), no lo ocultamos por si acaso
+            return true;
+        } catch (e) {
+            return true;
+        }
+    });
+
+    // 3. Si no hay eventos futuros
+    if (avisosFuturos.length === 0) {
+        return '<div style="text-align:center; padding: 40px 20px; color: #888;">No hay nuevos avisos programados por el momento.</div>';
+    }
+
+    // 4. Construimos el HTML solo con los avisos futuros
+    let html = '';
+    let mesActual = '';
+    let grupoAbierto = false;
+
+    /*
+    avisosFuturos.forEach(aviso => {
+        if (aviso.mes !== mesActual) {
+            if (grupoAbierto) html += `</div>`; // Cierra el mes anterior
+            html += `<div class="encabezado-mes">${aviso.mes}</div><div class="grupo-timeline">`;
+            mesActual = aviso.mes;
+            grupoAbierto = true;
+        }
+
+        html += `
+            <div class="aviso-fila">
+                <div class="aviso-fecha">
+                    <b>${aviso.dia}</b>
+                    <span>${aviso.diaSemana}</span>
+                </div>
+                <div class="aviso-contenido">
+                    <h4>${aviso.titulo}</h4>
+                    <p>${aviso.lugar ? `<b>${aviso.lugar} - </b>` : ''}${aviso.desc}</p>
+                </div>
+            </div>
+        `;
+    });
+    */
+
+    avisosFuturos.forEach(aviso => {
+        if (aviso.mes !== mesActual) {
+            if (grupoAbierto) html += `</div>`; // Cierra el mes anterior
+            html += `<div class="encabezado-mes">${aviso.mes}</div><div class="grupo-timeline">`;
+            mesActual = aviso.mes;
+            grupoAbierto = true;
+        }
+
+        // AQUÍ ESTÁ LA MAGIA: Convertimos los saltos de línea de Sheets a HTML
+        const descripcionFormateada = aviso.desc.replace(/\n/g, '<br>');
+
+        html += `
+            <div class="aviso-fila">
+                <div class="aviso-fecha">
+                    <b>${aviso.dia}</b>
+                    <span>${aviso.diaSemana}</span>
+                </div>
+                <div class="aviso-contenido">
+                    <h4>${aviso.titulo}</h4>
+                    <p>${aviso.lugar ? `<b>${aviso.lugar} - </b>` : ''}${descripcionFormateada}</p>
+                </div>
+            </div>
+        `;
+    });
+
+    if (grupoAbierto) html += `</div>`;
+    return html;
+}
+
+// Función principal para cargar desde Apps Script
+async function cargarAvisosDesdeAppsScript() {
+    // RECUERDA PONER AQUÍ LA URL DE TU SCRIPT
+    const webAppUrl = 'https://script.google.com/macros/s/AKfycbw0-_dLWDfhLxXzmkrMBehYj5jL31rNn7CVQ6qsZ_Phvd5ToTzzgEuSUqAPdVwapfC1/exec';
+
+    // A. Revisamos si hay datos guardados (Ahora guardamos el JSON crudo, no el HTML)
+    const avisosGuardados = localStorage.getItem('avisos_cuasiparroquiales_json');
+    if (avisosGuardados) {
+        try {
+            const avisos = JSON.parse(avisosGuardados);
+            contenidoPanel.innerHTML = renderizarAvisos(avisos); // Renderiza y oculta los que acaban de expirar
+        } catch (e) {
+            contenidoPanel.innerHTML = '<div style="text-align:center; padding: 20px; font-weight: bold; color: var(--vinotinto);">Cargando avisos...</div>';
+        }
+    } else {
+        contenidoPanel.innerHTML = '<div style="text-align:center; padding: 20px; font-weight: bold; color: var(--vinotinto);">Cargando avisos...</div>';
+    }
+
+    // B. Conexión a internet para buscar eventos nuevos
+    if (navigator.onLine) {
+        try {
+            const response = await fetch(webAppUrl);
+            const avisos = await response.json();
+
+            // C. Refrescamos la pantalla con los nuevos datos filtrados
+            contenidoPanel.innerHTML = renderizarAvisos(avisos);
+
+            // D. Guardamos el JSON crudo para la próxima vez
+            localStorage.setItem('avisos_cuasiparroquiales_json', JSON.stringify(avisos));
+
+        } catch (error) {
+            console.error("Error al cargar desde Google:", error);
+            if (!avisosGuardados) {
+                contenidoPanel.innerHTML = '<div style="text-align:center; padding: 20px; color: #888;">No hay conexión a internet y no hay avisos recientes guardados.</div>';
+            }
+        }
+    }
+}
+
+// - - - -
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
