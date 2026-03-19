@@ -68,12 +68,9 @@ body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background-color: var(--beige-crema);
     color: var(--texto);
-    /* Cambia height por min-height para permitir que el contenido fluya si es necesario */
-    min-height: 100dvh; 
+    min-height: 100dvh;
     width: 100vw;
-    /* Cambia hidden por auto o scroll para habilitar el gesto de refresco */
-    overflow-y: auto; 
-    /* Esta propiedad ayuda a que el scroll sea fluido en móviles */
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
@@ -83,49 +80,47 @@ body {
     position: relative;
 }
 
-/*
-body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background-color: var(--beige-crema);
-    color: var(--texto);
-    height: 100dvh;
-    width: 100vw;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    max-width: 480px;
-    margin: 0 auto;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overscroll-behavior-y: contain; /* Cámbialo a 'auto' o bórralo 
-}
-*/
-
 body::before {
     content: "";
-    position: absolute;
-    /* Al usar rotación, expandimos el área para no dejar huecos */
-    top: -50%;
-    left: -50%;
-    width: 500%;
-    height: 500%;
+    position: fixed;
+    /* Mantiene el fondo quieto al hacer scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 0;
-
-    /* PUNTOS RESALTADOS */
-    /* Aumentamos el radio a 1.2px y usamos el color Oro directamente */
-    background-image: radial-gradient(var(--oro) 0.25px, transparent 1px);
-
-    /* Espaciado entre puntos (más pequeño = más densidad) */
-    background-size: 6px 6px;
-
-    /* Opacidad alta para que resalten */
-    opacity: 0.4;
-
-    /* Rotación diagonal */
-    transform: rotate(-45deg);
-
-    /* Evita que bloquee clics en botones */
+    background-image:
+        radial-gradient(var(--oro) 0.5px, transparent 1px),
+        radial-gradient(var(--oro) 0.5px, transparent 1px);
+    background-size: 12px 12px;
+    background-position: 0 0, 6px 6px;
+    opacity: 0.3;
     pointer-events: none;
+}
+
+/* Busca el div que envuelve al link y alinéalo */
+.div-derecha {
+    display: flex;
+    justify-content: flex-end;
+    /* Empuja el contenido a la derecha */
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Estilo para el texto del link (VER+) */
+.link-derecha {
+    text-decoration: none !important;
+    font-family: inherit;
+    color: var(--oro);
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+.link-derecha:active {
+    opacity: 0.6;
 }
 
 /* SEGURIDAD: Elevamos el contenido para que no quede "detrás" de los puntos */
@@ -279,15 +274,15 @@ body::before {
     margin-top: -2px;
 }
 
-
-
 .tablero-principal {
     flex: 1;
-    overflow: hidden;
-    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding: 20px 1rem;
+    /* Bajamos un poco el padding para ganar espacio */
+    width: 100%;
+    /* Forzamos el ancho completo */
 }
 
 .tarjeta-principal {
@@ -382,14 +377,12 @@ body::before {
 }
 
 /* Contenedor Grid para los botones inferiores */
+
 .rejilla-menu {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     flex: 1;
-    /* Ocupa el resto de la altura */
-    min-height: 0;
-    /* Evita desbordamiento flex */
 }
 
 /* Estilos específicos para botones dentro de la rejilla */
@@ -583,11 +576,16 @@ body::before {
 
 .aviso-fila {
     display: flex;
-    gap: 15px;
-    padding: 12px 5px;
-    border-bottom: 1.5px solid #ddd;
+    gap: 0.25rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--oro-suave);
     align-items: center;
     position: relative;
+    z-index: 1;
+}
+
+.aviso-fila:last-child {
+    border-bottom: none;
 }
 
 .aviso-fecha {
@@ -649,7 +647,7 @@ body::before {
 }
 
 .contenido-caja {
-    padding: 8px 15px 15px;
+    padding: 0.5rem;
 }
 
 .contenido-caja p {
@@ -689,9 +687,10 @@ body::before {
 .linea-horaria {
     display: flex;
     justify-content: space-between;
-    font-size: 0.85rem;
-    padding: 0.5rem;
+    font-size: 1rem;
+    padding: 0.15rem 0.5rem;
     border-bottom: 1px solid #ddd;
+    letter-spacing: 1px;
 }
 
 .linea-horaria:first-of-type {
@@ -777,13 +776,13 @@ body::before {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 28px;
+    left: 24px;
     width: 3px;
     background: var(--oro-suave);
     z-index: 0;
 }
 
-.grupo-timeline .aviso-fila {
+.grupo-timeline {
     border-bottom: 1px dashed rgba(0, 0, 0, 0.05);
     position: relative;
 }
@@ -792,7 +791,7 @@ body::before {
 .grupo-timeline .aviso-fila:last-child::after {
     content: '';
     position: absolute;
-    left: 26px;
+    left: 22px;
     width: 7px;
     top: 50%;
     bottom: -5px;
@@ -800,7 +799,7 @@ body::before {
     z-index: 0;
 }
 
-.grupo-timeline .aviso-fila:last-child {
+.grupo-timeline {
     border-bottom: none;
 }
 
@@ -861,12 +860,6 @@ body::before {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
-/*
-.texto-oracion p {
-    letter-spacing: 0.5px;
-}
-*/
 
 .texto-oracion ul {
     padding-left: 2rem;
@@ -999,6 +992,10 @@ body::before {
     border-bottom: 1px solid var(--gris-linea);
     /* Mantiene la separación */
     transition: all 0.2s ease;
+}
+
+.enlace-web:first-child {
+    border-top: 1px solid var(--gris-linea);
 }
 
 /* Efecto al tocar (Feedback táctil) */
