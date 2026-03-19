@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Coromoto - App Cuasiparroquial</title>
+    <meta name="description"
+        content="Aplicación oficial de la Cuasiparroquia Nuestra Señora de Coromoto. Avisos, devocionario, horarios y más.">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="icono/favicon.svg">
+    <link rel="apple-touch-icon" href="icono/icon-192x192.png">
+    <meta name="theme-color" content="#5D0A14">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="CuasiCoromoto">
+</head>
+
+<body>
+
+    <!-- Cabecera -->
+    <header class="cabecera-minimalista">
+        <div class="linea"></div>
+        <div><span>Cuasiparroquia .</span>
+            <h1>Nuestra Señora de Coromoto</h1>
+        </div>
+    </header>
+
+    <main class="tablero-principal">
+        <!-- 1. Avisos (Principal) -->
+        <div class="tarjeta-principal" data-abrir-panel="Avisos Cuasiparroquiales">
+            <span class="material-icons-round icono-maximizar">open_in_full</span>
+            <span class="badge-noticia">Avisos Cuasiparroquiales</span>
+
+            <h2>Semana Santa 2026</h2>
+            <p>Te invitamos a recorrer juntos los días más sagrados de nuestra fe. Acompañemos a Jesús desde su entrada
+                triunfal en Jerusalén hasta el gozo de la tumba vacía. Es momento de renovar el corazón y caminar en
+                comunidad hacia la Pascua.</p>
+            <div class="noticia-meta">
+                <div class="meta-item">
+                    <span class="material-icons-round" aria-hidden="true">calendar_today</span>
+                    <time datetime="2026-02-14">Dom 29 MAR - Dom 05 ABR</time>
+                </div>
+
+                <!--
+                <div class="meta-item">
+                    <span class="material-icons-round" aria-hidden="true">schedule</span>
+                    <span>09:00 PM</span>
+                </div>
+                -->
+
+            </div>
+
+            <!--
+            <h2>Vigilia Pascual 2026</h2>
+            <p>Celebramos la victoria definitiva de Jesús sobre la muerte. En esta "Madre de todas las vigilias", es una noche de bendición del fuego y el agua, renovamos nuestras promesas bautismales y recibimos la luz del Cirio Pascual. Únete a la Cuasiparroquia para vivir el triunfo del Amor.</p>
+            <div class="noticia-meta">
+                <div class="meta-item">
+                    <span class="material-icons-round" aria-hidden="true">calendar_today</span>
+                    <time datetime="2026-02-14">Sáb 04 ABR</time>
+                </div>
+                <div class="meta-item">
+                    <span class="material-icons-round" aria-hidden="true">schedule</span>
+                    <span>09:00 PM</span>
+                </div>
+            </div>
+            -->
+        </div>
+
+        <!-- 3. Rejilla de botones 2x2 -->
+        <div class="rejilla-menu">
+            <div class="lista-accion" data-abrir-panel="Horarios">
+                <div class="lista-accion-izquierda">
+                    <div class="icono-circulo"><span class="material-icons-round">church</span></div>
+                    <div class="lista-accion-texto"><b>Horarios</b></div>
+                </div>
+                <span class="material-icons-round">chevron_right</span>
+            </div>
+
+            <div class="lista-accion" data-abrir-panel="Apostolados">
+                <div class="lista-accion-izquierda">
+                    <div class="icono-circulo"><span class="material-icons-round">groups</span></div>
+                    <div class="lista-accion-texto"><b>Apostolados</b></div>
+                </div>
+                <span class="material-icons-round">chevron_right</span>
+            </div>
+
+            <div class="lista-accion" data-abrir-panel="Obras">
+                <div class="lista-accion-izquierda">
+                    <div class="icono-circulo"><span class="material-icons-round">volunteer_activism</span></div>
+                    <div class="lista-accion-texto"><b>Obras</b></div>
+                </div>
+                <span class="material-icons-round">chevron_right</span>
+            </div>
+
+            <div class="lista-accion" data-abrir-panel="Sacramentos">
+                <div class="lista-accion-izquierda">
+                    <div class="icono-circulo"><span class="material-icons-round">water_drop</span></div>
+                    <div class="lista-accion-texto"><b>Sacramentos</b></div>
+                </div>
+                <span class="material-icons-round">chevron_right</span>
+            </div>
+
+            <div class="lista-accion" data-abrir-panel="Apoyar">
+                <div class="lista-accion-izquierda">
+                    <div class="icono-circulo"><span class="material-icons-round">favorite_border</span></div>
+                    <div class="lista-accion-texto"><b>Apoyar</b></div>
+                </div>
+                <span class="material-icons-round">chevron_right</span>
+            </div>
+
+            <div class="lista-accion" data-abrir-panel="Recursos">
+                <div class="lista-accion-izquierda">
+                    <div class="icono-circulo"><span class="material-icons-round">folder_open</span></div>
+                    <div class="lista-accion-texto"><b>Recursos</b></div>
+                </div>
+                <span class="material-icons-round">chevron_right</span>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Pie de navegación -->
+    <footer class="barra-navegacion">
+        <div class="nav-item" data-abrir-panel="Avisos Cuasiparroquiales">
+            <span class="material-icons-round">calendar_today</span>
+            <span>CALENDARIO</span>
+        </div>
+
+        <div class="nav-item item-central" data-abrir-panel="Devocionario">
+            <div class="boton-oremos">
+                <span style="display:flex; align-items:center; justify-content:center; margin-bottom: 2px;">
+                    <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor">
+                        <path d="M10.5 2h3v5h5v3h-5v12h-3V10h-5V7h5z" />
+                    </svg>
+                </span>
+                <span>OREMOS</span>
+            </div>
+        </div>
+
+        <div class="nav-item" data-abrir-panel="Apoyar">
+            <span class="material-icons-round">message</span>
+            <span>CONTACTO</span>
+        </div>
+    </footer>
+
+    <!-- Paneles y Modales -->
+    <div id="capa-oscura" class="capa-oscura"></div>
+
+    <div id="panel" class="panel-deslizable">
+        <div class="cabecera-panel">
+            <span id="titulo-panel" class="titulo-panel">Título</span>
+            <span class="material-icons-round boton-cerrar">close</span>
+        </div>
+        <div id="contenido-panel" class="contenido-panel"></div>
+    </div>
+
+    <div id="sub-panel" class="sub-panel-deslizable">
+        <div class="cabecera-panel">
+            <span id="sub-titulo" class="titulo-panel">Oración</span>
+            <span class="material-icons-round boton-cerrar">expand_more</span>
+        </div>
+        <div id="sub-contenido" class="contenido-panel"></div>
+    </div>
+
+    <div id="pwa-install-banner" class="pwa-banner">
+        <div class="pwa-banner-content">
+            <span class="material-icons-round">install_mobile</span>
+            <div class="pwa-banner-text">
+                <b>Instalar Aplicación</b>
+                <span>Accede más rápido y úsala sin conexión.</span>
+            </div>
+        </div>
+        <div class="pwa-banner-actions">
+            <button id="pwa-install-btn" class="btn-instalar">Instalar</button>
+            <button id="pwa-close-banner" class="btn-cerrar-banner">
+                <span class="material-icons-round">close</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Lógica de la aplicación -->
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registrado', reg))
+                    .catch(err => console.log('Error registrando Service Worker', err));
+            });
+        }
+    </script>
+</body>
+
+</html>

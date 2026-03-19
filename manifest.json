@@ -1,0 +1,38 @@
+{
+    "name": "Coromoto - App Cuasiparroquial",
+    "short_name": "CuasiCoromoto",
+    "description": "App oficial de la Cuasiparroquia Nuestra Señora de Coromoto. Avisos, devocionario, horarios y más.",
+    "id": "/App/",
+    "start_url": "./index.html",
+    "scope": "./",
+    "display": "standalone",
+    "background_color": "#EFE9D9",
+    "theme_color": "#5D0A14",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "icono/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "icono/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icono/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "icono/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
