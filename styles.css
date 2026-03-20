@@ -278,12 +278,22 @@ body::before {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    justify-content: space-between;
     padding: 20px 1rem;
-    /* Bajamos un poco el padding para ganar espacio */
+    gap: 20px;
+    overflow: hidden;
     width: 100%;
-    /* Forzamos el ancho completo */
 }
+
+/*
+.tarjeta-principal {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+}
+*/
 
 .tarjeta-principal {
     background: var(--vinotinto-grad);
@@ -293,7 +303,6 @@ body::before {
     position: relative;
     box-shadow: 0 6px 12px rgba(93, 10, 20, 0.15);
     flex-shrink: 0;
-    /* No encoger */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -306,7 +315,6 @@ body::before {
     transform: scale(0.98);
 }
 
-/* MODIFICADO: Estilo para el icono maximizar */
 .icono-maximizar {
     position: absolute;
     top: 15px;
@@ -327,6 +335,11 @@ body::before {
     opacity: 0.85;
     line-height: 1.1;
     margin-bottom: 6px;
+    display: -webkit-box;
+
+    /*-webkit-line-clamp: 3;*/
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .etiqueta-fecha {
@@ -383,6 +396,7 @@ body::before {
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     flex: 1;
+    flex-shrink: 0;
 }
 
 /* Estilos específicos para botones dentro de la rejilla */
