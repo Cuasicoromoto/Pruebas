@@ -64,55 +64,27 @@
     padding: 0;
 }
 
-/*
 body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background-color: var(--beige-crema);
     color: var(--texto);
-    /* BLOQUEO DE ALTURA */
-    height: 100vh; /* Usa vh para asegurar compatibilidad total 
-    height: 100dvh; /* dvh ajusta dinámicamente si aparece la barra del navegador 
+    height: 100vh; 
+    height: 100dvh; 
     width: 100vw;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* ESTO ES VITAL: Prohibido cualquier scroll 
-    /* ESTRUCTURA FLEXIBLE 
+    overflow: hidden; 
     display: flex;
     flex-direction: column;
-    /* CENTRADO PARA MÓVILES 
     max-width: 480px;
     margin: 0 auto;
     position: relative;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
-*/
-
-body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background-color: var(--beige-crema);
-    color: var(--texto);
-    
-    /* Dimensiones fijas e inamovibles */
-    height: 100dvh; 
-    width: 100vw;
-    margin: 0;
-    overflow: hidden; /* Elimina barras de scroll */
-    
-    /* Bloqueo de gestos nativos (Pull-to-refresh) */
-    overscroll-behavior-y: none; 
-    touch-action: none; /* Deshabilita gestos táctiles del navegador */
-
-    display: flex;
-    flex-direction: column;
-    max-width: 480px;
-    margin: 0 auto;
-    position: relative;
-}
 
 body::before {
     content: "";
     position: fixed;
-    /* Mantiene el fondo quieto al hacer scroll */
     top: 0;
     left: 0;
     width: 100%;
