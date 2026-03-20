@@ -68,23 +68,22 @@ body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background-color: var(--beige-crema);
     color: var(--texto);
-    height: 100vh; 
-    height: 100dvh; 
+    min-height: 100dvh;
     width: 100vw;
-    margin: 0;
-    padding: 0;
-    overflow: hidden; 
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
     max-width: 480px;
     margin: 0 auto;
-    position: relative;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 body::before {
     content: "";
     position: fixed;
+    /* Mantiene el fondo quieto al hacer scroll */
     top: 0;
     left: 0;
     width: 100%;
@@ -245,15 +244,17 @@ body::before {
     letter-spacing: 0.5px;
 }
 
-/* El botón central "OREMOS" */
 .item-central {
     position: relative;
-    top: -12px;
+    top: -8px;
+    /* Reducido de -12px para evitar que choque con el contenido */
 }
 
 .boton-oremos {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    /* Reducido de 70px */
+    height: 60px;
+    /* Reducido de 70px */
     background: var(--vinotinto-grad) padding-box,
         var(--oro-grad) border-box;
     border: 4px solid transparent;
@@ -279,37 +280,40 @@ body::before {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    overflow: hidden;
+    justify-content: flex-start;
     padding: 20px 1rem;
     gap: 20px;
-    overflow: hidden;
     width: 100%;
 }
+
 
 /*
 .tarjeta-principal {
     flex: 1;
-    min-height: 0;
-    overflow: hidden; 
     display: flex;
     flex-direction: column;
+    overflow: hidden; 
+    min-height: 0;
 }
 */
 
 .tarjeta-principal {
     background: var(--vinotinto-grad);
     border-radius: 20px;
-    padding: 15px;
+    padding: 12px;
+    /* Reducido ligeramente */
     color: var(--blanco);
     position: relative;
     box-shadow: 0 6px 12px rgba(93, 10, 20, 0.15);
-    flex-shrink: 0;
+    flex: 0 1 auto;
+    /* Permitimos que se encoja si es necesario */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 100px;
+    min-height: 80px;
+    /* Reducido de 100px */
     cursor: pointer;
-    transition: transform 0.2s;
 }
 
 .tarjeta-principal:active {
@@ -335,10 +339,9 @@ body::before {
     font-size: 0.75rem;
     opacity: 0.85;
     line-height: 1.1;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     display: -webkit-box;
-
-    /*-webkit-line-clamp: 3;*/
+    /*-webkit-line-clamp: 2;  Forzamos máximo 2 líneas en el home */
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -395,26 +398,20 @@ body::before {
 .rejilla-menu {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 10px;
+    /* Reducido de 20px a 10px */
     flex: 1;
-    flex-shrink: 0;
+    /* Esto hará que intente ocupar el resto del espacio */
+    min-height: 0;
+    /* Importante para que flex-item pueda encogerse */
 }
 
-/* Estilos específicos para botones dentro de la rejilla */
 .rejilla-menu .lista-accion {
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    height: 100%;
-    margin: 0;
-    padding: 10px 5px;
-}
-
-.rejilla-menu .lista-accion-izquierda {
-    flex-direction: column;
-    gap: 5px;
-    justify-content: center;
-    width: 100%;
+    padding: 8px 4px;
+    /* Más compacto */
+    height: auto;
+    min-height: 60px;
+    /* Asegura un tamaño táctil mínimo */
 }
 
 /* Ocultar flecha derecha en modo rejilla */
