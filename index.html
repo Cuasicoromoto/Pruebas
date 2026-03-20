@@ -23,7 +23,7 @@
     <!-- Cabecera -->
     <header class="cabecera-minimalista">
         <div class="linea"></div>
-        <div><span>Cuasiparroquia s</span>
+        <div><span>Cuasiparroquia 3</span>
             <h1>Nuestra Señora de Coromoto</h1>
         </div>
     </header>
@@ -163,7 +163,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                const swUrl = './sw.js?v=0.029';
+                const swUrl = './sw.js?v=0.030';
 
                 navigator.serviceWorker.register(swUrl)
                     .then(reg => {
@@ -176,10 +176,29 @@
             });
 
             // 3. Detectar cuando el nuevo SW toma el control y recargar la página automáticamente
+
+            /*
             let refreshing = false;
             navigator.serviceWorker.addEventListener('controllerchange', () => {
                 if (!refreshing) {
                     window.location.reload();
+                    refreshing = true;
+                }
+            });
+            */
+
+            let refreshing = false;
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                if (!refreshing) {
+                    // 1. Ocultamos suavemente la interfaz antes de recargar
+                    document.body.style.transition = 'opacity 0.2s ease';
+                    document.body.style.opacity = '0';
+
+                    // 2. Esperamos un instante para que el navegador procese el cambio
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 150);
+
                     refreshing = true;
                 }
             });
