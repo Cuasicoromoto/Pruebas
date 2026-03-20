@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: 'Material Icons Round';
     font-style: normal;
@@ -258,16 +259,15 @@ body::before {
     margin-top: -2px;
 }
 
+
+
 .tablero-principal {
     flex: 1;
     overflow: hidden;
-    /* Evita scroll */
-    padding: 15px;
-    /* Reducido ligeramente para ganar espacio */
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    /* Espacio entre la tarjeta y la rejilla */
+    gap: 20px;
 }
 
 .tarjeta-principal {
@@ -277,8 +277,8 @@ body::before {
     color: var(--blanco);
     position: relative;
     box-shadow: 0 6px 12px rgba(93, 10, 20, 0.15);
-    flex: 0 1 auto;
-    /* Permite que la tarjeta se encoja si es necesario */
+    flex-shrink: 0;
+    /* No encoger */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -361,47 +361,32 @@ body::before {
     opacity: 0.8;
 }
 
+/* Contenedor Grid para los botones inferiores */
 .rejilla-menu {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(3, 1fr);
-    /* Fuerza 3 filas iguales */
-    gap: 15px;
-    /* Espacio uniforme entre botones */
+    gap: 20px;
     flex: 1;
-    /* Ocupa todo el espacio restante */
+    /* Ocupa el resto de la altura */
     min-height: 0;
-    /* Permite que el grid se encoja para caber en pantalla */
+    /* Evita desbordamiento flex */
 }
 
 /* Estilos específicos para botones dentro de la rejilla */
 .rejilla-menu .lista-accion {
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    /* Centra horizontalmente el contenido */
     text-align: center;
     height: 100%;
     margin: 0;
-    padding: 5px;
+    padding: 10px 5px;
 }
 
 .rejilla-menu .lista-accion-izquierda {
     flex-direction: column;
-    /* Icono arriba, texto abajo */
-    gap: 8px;
-    /* Espacio entre icono y texto */
+    gap: 5px;
     justify-content: center;
-    align-items: center;
-    /* Asegura centrado horizontal */
     width: 100%;
-}
-
-.rejilla-menu .lista-accion-texto {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* Centra el texto "Horarios", "Apostolados", etc. */
 }
 
 /* Ocultar flecha derecha en modo rejilla */
@@ -428,15 +413,13 @@ body::before {
     flex-shrink: 0;
 }
 
-/*
 .lista-accion-texto {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
-    /* Asegura centrado en rejilla 
+    /* Asegura centrado en rejilla */
 }
-*/
 
 .lista-accion-texto b {
     display: block;
