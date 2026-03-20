@@ -1,4 +1,4 @@
-const CACHE_NAME = 'coromoto-marzo-2026-v0.021'; // Recuerda subir este número
+const CACHE_NAME = 'coromoto-marzo-2026-v0.022'; // Recuerda subir este número
 const urlsToCache = [
     './',
     './index.html',
