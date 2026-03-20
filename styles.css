@@ -68,59 +68,43 @@ body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background-color: var(--beige-crema);
     color: var(--texto);
-    min-height: 100dvh;
+    height: 100dvh;
     width: 100vw;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     max-width: 480px;
     margin: 0 auto;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    /* Importante para contener el pseudo-elemento */
     position: relative;
 }
 
 body::before {
     content: "";
-    position: fixed;
-    /* Mantiene el fondo quieto al hacer scroll */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    /* Al usar rotación, expandimos el área para no dejar huecos */
+    top: -50%;
+    left: -50%;
+    width: 500%;
+    height: 500%;
     z-index: 0;
-    background-image:
-        radial-gradient(var(--oro) 0.5px, transparent 1px),
-        radial-gradient(var(--oro) 0.5px, transparent 1px);
-    background-size: 12px 12px;
-    background-position: 0 0, 6px 6px;
-    opacity: 0.3;
+
+    /* PUNTOS RESALTADOS */
+    /* Aumentamos el radio a 1.2px y usamos el color Oro directamente */
+    background-image: radial-gradient(var(--oro) 0.25px, transparent 1px);
+
+    /* Espaciado entre puntos (más pequeño = más densidad) */
+    background-size: 6px 6px;
+
+    /* Opacidad alta para que resalten */
+    opacity: 0.4;
+
+    /* Rotación diagonal */
+    transform: rotate(-45deg);
+
+    /* Evita que bloquee clics en botones */
     pointer-events: none;
-}
-
-/* Busca el div que envuelve al link y alinéalo */
-.div-derecha {
-    display: flex;
-    justify-content: flex-end;
-    /* Empuja el contenido a la derecha */
-    width: 100%;
-    margin-top: 10px;
-}
-
-/* Estilo para el texto del link (VER+) */
-.link-derecha {
-    text-decoration: none !important;
-    font-family: inherit;
-    color: var(--oro);
-    font-size: 0.65rem;
-    letter-spacing: 1px;
-    border: none;
-    background: none;
-    padding: 0;
-}
-
-.link-derecha:active {
-    opacity: 0.6;
 }
 
 /* SEGURIDAD: Elevamos el contenido para que no quede "detrás" de los puntos */
@@ -244,17 +228,15 @@ body::before {
     letter-spacing: 0.5px;
 }
 
+/* El botón central "OREMOS" */
 .item-central {
     position: relative;
-    top: -8px;
-    /* Reducido de -12px para evitar que choque con el contenido */
+    top: -12px;
 }
 
 .boton-oremos {
-    width: 60px;
-    /* Reducido de 70px */
-    height: 60px;
-    /* Reducido de 70px */
+    width: 70px;
+    height: 70px;
     background: var(--vinotinto-grad) padding-box,
         var(--oro-grad) border-box;
     border: 4px solid transparent;
@@ -276,50 +258,39 @@ body::before {
     margin-top: -2px;
 }
 
+
+
 .tablero-principal {
     flex: 1;
-    display: flex;
-    flex-direction: column;
     overflow: hidden;
-    justify-content: flex-start;
-    padding: 20px 1rem;
-    gap: 20px;
-    width: 100%;
-}
-
-
-/*
-.tarjeta-principal {
-    flex: 1;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    overflow: hidden; 
-    min-height: 0;
+    gap: 20px;
 }
-*/
 
 .tarjeta-principal {
     background: var(--vinotinto-grad);
     border-radius: 20px;
-    padding: 12px;
-    /* Reducido ligeramente */
+    padding: 15px;
     color: var(--blanco);
     position: relative;
     box-shadow: 0 6px 12px rgba(93, 10, 20, 0.15);
-    flex: 0 1 auto;
-    /* Permitimos que se encoja si es necesario */
+    flex-shrink: 0;
+    /* No encoger */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 80px;
-    /* Reducido de 100px */
+    min-height: 100px;
     cursor: pointer;
+    transition: transform 0.2s;
 }
 
 .tarjeta-principal:active {
     transform: scale(0.98);
 }
 
+/* MODIFICADO: Estilo para el icono maximizar */
 .icono-maximizar {
     position: absolute;
     top: 15px;
@@ -339,11 +310,7 @@ body::before {
     font-size: 0.75rem;
     opacity: 0.85;
     line-height: 1.1;
-    margin-bottom: 4px;
-    display: -webkit-box;
-    /*-webkit-line-clamp: 2;  Forzamos máximo 2 líneas en el home */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    margin-bottom: 6px;
 }
 
 .etiqueta-fecha {
@@ -394,24 +361,31 @@ body::before {
 }
 
 /* Contenedor Grid para los botones inferiores */
-
 .rejilla-menu {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    /* Reducido de 20px a 10px */
+    gap: 20px;
     flex: 1;
-    /* Esto hará que intente ocupar el resto del espacio */
+    /* Ocupa el resto de la altura */
     min-height: 0;
-    /* Importante para que flex-item pueda encogerse */
+    /* Evita desbordamiento flex */
 }
 
+/* Estilos específicos para botones dentro de la rejilla */
 .rejilla-menu .lista-accion {
-    padding: 8px 4px;
-    /* Más compacto */
-    height: auto;
-    min-height: 60px;
-    /* Asegura un tamaño táctil mínimo */
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    margin: 0;
+    padding: 10px 5px;
+}
+
+.rejilla-menu .lista-accion-izquierda {
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    width: 100%;
 }
 
 /* Ocultar flecha derecha en modo rejilla */
@@ -588,16 +562,11 @@ body::before {
 
 .aviso-fila {
     display: flex;
-    gap: 0.25rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--oro-suave);
+    gap: 15px;
+    padding: 12px 5px;
+    border-bottom: 1.5px solid #ddd;
     align-items: center;
     position: relative;
-    z-index: 1;
-}
-
-.aviso-fila:last-child {
-    border-bottom: none;
 }
 
 .aviso-fecha {
@@ -659,7 +628,7 @@ body::before {
 }
 
 .contenido-caja {
-    padding: 0.5rem;
+    padding: 8px 15px 15px;
 }
 
 .contenido-caja p {
@@ -699,10 +668,9 @@ body::before {
 .linea-horaria {
     display: flex;
     justify-content: space-between;
-    font-size: 1rem;
-    padding: 0.15rem 0.5rem;
+    font-size: 0.85rem;
+    padding: 0.5rem;
     border-bottom: 1px solid #ddd;
-    letter-spacing: 1px;
 }
 
 .linea-horaria:first-of-type {
@@ -788,13 +756,13 @@ body::before {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 24px;
+    left: 28px;
     width: 3px;
     background: var(--oro-suave);
     z-index: 0;
 }
 
-.grupo-timeline {
+.grupo-timeline .aviso-fila {
     border-bottom: 1px dashed rgba(0, 0, 0, 0.05);
     position: relative;
 }
@@ -803,7 +771,7 @@ body::before {
 .grupo-timeline .aviso-fila:last-child::after {
     content: '';
     position: absolute;
-    left: 22px;
+    left: 26px;
     width: 7px;
     top: 50%;
     bottom: -5px;
@@ -811,7 +779,7 @@ body::before {
     z-index: 0;
 }
 
-.grupo-timeline {
+.grupo-timeline .aviso-fila:last-child {
     border-bottom: none;
 }
 
@@ -872,6 +840,12 @@ body::before {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+/*
+.texto-oracion p {
+    letter-spacing: 0.5px;
+}
+*/
 
 .texto-oracion ul {
     padding-left: 2rem;
@@ -1004,10 +978,6 @@ body::before {
     border-bottom: 1px solid var(--gris-linea);
     /* Mantiene la separación */
     transition: all 0.2s ease;
-}
-
-.enlace-web:first-child {
-    border-top: 1px solid var(--gris-linea);
 }
 
 /* Efecto al tocar (Feedback táctil) */
