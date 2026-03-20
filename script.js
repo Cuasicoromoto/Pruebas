@@ -703,46 +703,6 @@ function renderizarAvisos(avisos) {
     return html;
 }
 
-// Función principal para cargar desde Apps Script
-async function cargarAvisosDesdeAppsScript() {
-    // RECUERDA PONER AQUÍ LA URL DE TU SCRIPT
-    const webAppUrl = 'https://script.google.com/macros/s/AKfycbyWYf7jJAm794SohA8UBj62wjYDur2I2mgLjrL5-mCEjLcs9qq-gtLLc0n9h0xijlzO/exec?tipo=Avisos';
-    /*const webAppUrl = 'https://script.google.com/macros/s/AKfycbw0-_dLWDfhLxXzmkrMBehYj5jL31rNn7CVQ6qsZ_Phvd5ToTzzgEuSUqAPdVwapfC1/exec';*/
-
-    // A. Revisamos si hay datos guardados (Ahora guardamos el JSON crudo, no el HTML)
-    const avisosGuardados = localStorage.getItem('avisos_cuasiparroquiales_json');
-    if (avisosGuardados) {
-        try {
-            const avisos = JSON.parse(avisosGuardados);
-            contenidoPanel.innerHTML = renderizarAvisos(avisos); // Renderiza y oculta los que acaban de expirar
-        } catch (e) {
-            contenidoPanel.innerHTML = '<div style="text-align:center; padding: 20px; font-weight: bold; color: var(--vinotinto);">Cargando avisos...</div>';
-        }
-    } else {
-        contenidoPanel.innerHTML = '<div style="text-align:center; padding: 20px; font-weight: bold; color: var(--vinotinto);">Cargando avisos...</div>';
-    }
-
-    // B. Conexión a internet para buscar eventos nuevos
-    if (navigator.onLine) {
-        try {
-            const response = await fetch(webAppUrl);
-            const avisos = await response.json();
-
-            // C. Refrescamos la pantalla con los nuevos datos filtrados
-            contenidoPanel.innerHTML = renderizarAvisos(avisos);
-
-            // D. Guardamos el JSON crudo para la próxima vez
-            localStorage.setItem('avisos_cuasiparroquiales_json', JSON.stringify(avisos));
-
-        } catch (error) {
-            console.error("Error al cargar desde Google:", error);
-            if (!avisosGuardados) {
-                contenidoPanel.innerHTML = '<div style="text-align:center; padding: 20px; color: #888;">No hay conexión a internet y no hay avisos recientes guardados.</div>';
-            }
-        }
-    }
-}
-
 async function cargarAvisosDesdeAppsScript() {
     // RECUERDA PONER AQUÍ LA URL DE TU SCRIPT
     const webAppUrl = 'https://script.google.com/macros/s/AKfycbyWYf7jJAm794SohA8UBj62wjYDur2I2mgLjrL5-mCEjLcs9qq-gtLLc0n9h0xijlzO/exec?tipo=Avisos';
