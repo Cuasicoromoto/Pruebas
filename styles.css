@@ -71,6 +71,7 @@ body {
     min-height: 100dvh;
     width: 100vw;
     overflow-y: auto;
+    overscroll-behavior-y: none;
     -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
