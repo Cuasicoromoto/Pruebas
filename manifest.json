@@ -1,6 +1,6 @@
 {
-    "name": "Coromoto - App Cuasiparroquial",
-    "short_name": "CuasiCoromoto",
+    "name": "Prueba 1",
+    "short_name": "Prueba 1",
     "description": "App oficial de la Cuasiparroquia Nuestra Señora de Coromoto. Avisos, devocionario, horarios y más.",
     "id": "/App/",
     "start_url": "./index.html",
