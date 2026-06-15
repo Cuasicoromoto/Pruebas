@@ -497,6 +497,15 @@ const datos = {
     `,
 
     'Recursos': `
+        <div class="caja-info" id="seccion-instalar-manual" style="display: none;">
+            <h4><span class="material-icons-round">install_mobile</span> Aplicación</h4>
+            <div class="contenido-caja">
+                <div class="enlace-oracion" data-accion="instalar-pwa-manual">
+                    Instalar en este dispositivo <span>Instalar</span>
+                </div>
+            </div>
+        </div>
+
         <div class="caja-info">
             <h4><span class="material-icons-round">link</span> Enlaces de Interés</h4>
             <div class="contenido-caja">
@@ -584,6 +593,12 @@ async function abrirPanel(titulo) {
             return;
         }
         contenidoPanel.innerHTML = contenido;
+
+        // Mostrar opción de instalación manual solo si el prompt está disponible
+        if (titulo === 'Recursos') {
+            const seccionInstalar = contenidoPanel.querySelector('#seccion-instalar-manual');
+            if (seccionInstalar) seccionInstalar.style.display = deferredPrompt ? 'block' : 'none';
+        }
     }
 }
 
@@ -713,7 +728,7 @@ async function cargarAvisosDesdeAppsScript() {
     const webAppUrl = 'https://script.google.com/macros/s/AKfycbyWYf7jJAm794SohA8UBj62wjYDur2I2mgLjrL5-mCEjLcs9qq-gtLLc0n9h0xijlzO/exec?tipo=Avisos';
     /*const webAppUrl = 'https://script.google.com/macros/s/AKfycbw0-_dLWDfhLxXzmkrMBehYj5jL31rNn7CVQ6qsZ_Phvd5ToTzzgEuSUqAPdVwapfC1/exec';*/
 
-    // A. Revisamos si hay datos guardados (Ahora guardamos el JSON crudo, no el HTML)
+// A. Revisamos si hay datos guardados (Ahora guardamos el JSON crudo, no el HTML)
 /*    const avisosGuardados = localStorage.getItem('avisos_cuasiparroquiales_json');
     if (avisosGuardados) {
         try {
@@ -861,51 +876,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* --- LÓGICA DE INSTALACIÓN PWA --- */
 let deferredPrompt;
-const installBanner = document.getElementById('pwa-install-banner');
-const installBtn = document.getElementById('pwa-install-btn');
-const closeBanner = document.getElementById('pwa-close-banner');
 
 window.addEventListener('beforeinstallprompt', (e) => {
     // Evita que el navegador muestre el aviso automático
     e.preventDefault();
     // Guarda el evento para poder activarlo después
     deferredPrompt = e;
+
     // Muestra nuestro banner personalizado
+    const installBanner = document.getElementById('pwa-install-banner');
     if (installBanner) {
         installBanner.style.display = 'flex';
     }
-}
-);
+});
 
-if (installBtn) {
-    installBtn.addEventListener('click', async () => {
-        if (!deferredPrompt)
-            return;
-        // Muestra el prompt de instalación nativo
+// Listener para el botón de instalar
+document.addEventListener('click', async (e) => {
+    const esBotonInstalar = e.target.id === 'pwa-install-btn' || e.target.closest('[data-accion="instalar-pwa-manual"]');
+
+    if (esBotonInstalar) {
+        if (!deferredPrompt) return;
+
         deferredPrompt.prompt();
-        // Espera a que el usuario responda
         const { outcome } = await deferredPrompt.userChoice;
-        console.log(`Usuario eligió: ${outcome}`);
-        // Limpia el evento
+        console.log(`Instalación: ${outcome}`);
         deferredPrompt = null;
-        // Oculta el banner
-        if (installBanner)
-            installBanner.style.display = 'none';
-    }
-    );
-}
 
-if (closeBanner) {
-    closeBanner.addEventListener('click', () => {
-        if (installBanner)
-            installBanner.style.display = 'none';
+        const installBanner = document.getElementById('pwa-install-banner');
+        if (installBanner) installBanner.style.display = 'none';
+
+        const seccionManual = document.getElementById('seccion-instalar-manual');
+        if (seccionManual) seccionManual.style.display = 'none';
     }
-    );
-}
+
+    if (e.target.id === 'pwa-close-banner' || e.target.closest('#pwa-close-banner')) {
+        const banner = document.getElementById('pwa-install-banner');
+        if (banner) banner.style.display = 'none';
+    }
+});
 
 window.addEventListener('appinstalled', (event) => {
     console.log('PWA instalada con éxito');
-    if (installBanner)
-        installBanner.style.display = 'none';
-}
-);
+    const installBanner = document.getElementById('pwa-install-banner');
+    if (installBanner) installBanner.style.display = 'none';
+});
