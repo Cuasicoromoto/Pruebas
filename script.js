@@ -31,7 +31,6 @@ const COMUNES = {
     cierre: `<br><h3>Jaculatoria final</h3> <p class="jaculatoria">Ave María Purísima. <br><i>Sin pecado original concebida.</i></p>`
 };
 
-let oracionesDinamicas = {};
 
 const oracionesTexto = {
     '<!-- Oraciones cotidianas -->': ``,
@@ -535,6 +534,8 @@ const tituloPanel = document.getElementById('titulo-panel');
 const contenidoPanel = document.getElementById('contenido-panel');
 const subTitulo = document.getElementById('sub-titulo');
 const subContenido = document.getElementById('sub-contenido');
+const cargandoPanel = document.getElementById('cargando-panel');
+const btnRefrescarPanel = document.getElementById('btn-refrescar-panel');
 
 const oracionesSinAmen = ['Angelus', 'A San José', 'Misterios Gozosos', 'Misterios Luminosos', 'Misterios Dolorosos', 'Misterios Gloriosos', 'Novena a la Virgen de Coromoto', 'Mandamientos', 'Sacramentos', 'Obras de Misericordia Corporales', 'Obras de Misericordia Espirituales', 'Preparación para la confesión', 'Los siete dones del Espíritu Santo'];
 
@@ -570,9 +571,12 @@ async function abrirPanel(titulo) {
     capaOscura.classList.add('activa');
 
     if (titulo === 'Avisos Cuasiparroquiales') {
+        if (btnRefrescarPanel) btnRefrescarPanel.style.display = 'inline-block';
         // Llama a la nueva función si tocamos los avisos
         await cargarAvisosDesdeAppsScript();
     } else {
+        if (btnRefrescarPanel) btnRefrescarPanel.style.display = 'none';
+        if (cargandoPanel) cargandoPanel.style.display = 'none';
         // Carga normal para el resto de apartados (horarios, devocionario, etc.)
         const contenido = datos[titulo];
         if (!contenido) {
@@ -702,14 +706,15 @@ function renderizarAvisos(avisos) {
     if (grupoAbierto) html += `</div>`;
     return html;
 }
-
+/*
+// Función principal para cargar desde Apps Script
 async function cargarAvisosDesdeAppsScript() {
     // RECUERDA PONER AQUÍ LA URL DE TU SCRIPT
     const webAppUrl = 'https://script.google.com/macros/s/AKfycbyWYf7jJAm794SohA8UBj62wjYDur2I2mgLjrL5-mCEjLcs9qq-gtLLc0n9h0xijlzO/exec?tipo=Avisos';
     /*const webAppUrl = 'https://script.google.com/macros/s/AKfycbw0-_dLWDfhLxXzmkrMBehYj5jL31rNn7CVQ6qsZ_Phvd5ToTzzgEuSUqAPdVwapfC1/exec';*/
 
     // A. Revisamos si hay datos guardados (Ahora guardamos el JSON crudo, no el HTML)
-    const avisosGuardados = localStorage.getItem('avisos_cuasiparroquiales_json');
+/*    const avisosGuardados = localStorage.getItem('avisos_cuasiparroquiales_json');
     if (avisosGuardados) {
         try {
             const avisos = JSON.parse(avisosGuardados);
@@ -741,50 +746,48 @@ async function cargarAvisosDesdeAppsScript() {
         }
     }
 }
+*/
+async function cargarAvisosDesdeAppsScript() {
+    // RECUERDA PONER AQUÍ LA URL DE TU SCRIPT
+    const webAppUrl = 'https://script.google.com/macros/s/AKfycbzhffrPj7V5bJ3IOWD0puAv6i5GE_i__8rc5Q7xdqgXwq8Ww5zQY9KRryAy1LkWf1Aj/exec?tipo=Avisos';
 
-// Esta función sirve para pedir CUALQUIER pestaña de oraciones a Google Sheets
-async function cargarCategoriaOraciones(categoria) {
-    const webAppUrl = `https://script.google.com/macros/s/AKfycbxebCOoaQsZP9ppnb9GGCkZHgs2062fdQtTNoN0I2OLEWLYBKWcrumgM7OjhBBMKRb6/exec?tipo=${categoria}`;
+    if (cargandoPanel) cargandoPanel.style.display = 'inline-block';
 
-    // 1. Cargar desde la memoria local (offline) SOLO si la variable está vacía
-    if (Object.keys(oracionesDinamicas).length === 0) {
-        const oracionesGuardadas = localStorage.getItem('oraciones_cuasiparroquia_json');
-        if (oracionesGuardadas) {
-            try {
-                oracionesDinamicas = JSON.parse(oracionesGuardadas);
-            } catch (e) { console.error("Error leyendo oraciones locales"); }
+    // A. Revisamos si hay datos guardados (Ahora guardamos el JSON crudo, no el HTML)
+    const avisosGuardados = localStorage.getItem('avisos_cuasiparroquiales_json');
+    if (avisosGuardados) {
+        try {
+            const avisos = JSON.parse(avisosGuardados);
+            contenidoPanel.innerHTML = renderizarAvisos(avisos); // Renderiza y oculta los que acaban de expirar
+        } catch (e) {
+            contenidoPanel.innerHTML = '<div style="text-align:center; padding: 20px; font-weight: bold; color: var(--vinotinto);">Cargando avisos...</div>';
         }
+    } else {
+        contenidoPanel.innerHTML = '<div style="text-align:center; padding: 20px; font-weight: bold; color: var(--vinotinto);">Cargando avisos...</div>';
     }
 
-    // 2. Intentar actualizar desde internet en segundo plano
-    if (navigator.onLine) {
-        try {
-            const response = await fetch(webAppUrl);
-            const data = await response.json();
+    // B. Conexión a internet para buscar eventos nuevos
+    try {
+        const response = await fetch(webAppUrl);
+        const avisos = await response.json();
 
-            // En lugar de crear un objeto nuevo, AGREGAMOS las oraciones a la caja general
-            data.forEach(item => {
-                if (item.nombre) {
-                    oracionesDinamicas[item.nombre.trim()] = item.texto;
-                }
-            });
+        // C. Refrescamos la pantalla con los nuevos datos filtrados
+        contenidoPanel.innerHTML = renderizarAvisos(avisos);
 
-            // Actualizamos el LocalStorage con TODAS las oraciones combinadas
-            localStorage.setItem('oraciones_cuasiparroquia_json', JSON.stringify(oracionesDinamicas));
+        // D. Guardamos el JSON crudo para la próxima vez
+        localStorage.setItem('avisos_cuasiparroquiales_json', JSON.stringify(avisos));
 
-        } catch (error) {
-            console.error(`Error al actualizar la categoría ${categoria}:`, error);
+    } catch (error) {
+        console.error("Error al cargar desde Google:", error);
+        if (!avisosGuardados) {
+            contenidoPanel.innerHTML = '<div style="text-align:center; padding: 20px; color: #888;">No hay conexión a internet y no hay avisos recientes guardados.</div>';
         }
+    } finally {
+        if (cargandoPanel) cargandoPanel.style.display = 'none';
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Cargar oraciones en segundo plano
-    cargarCategoriaOraciones('OracionesCotidianas');
-    cargarCategoriaOraciones('OracionesVarias');
-    cargarCategoriaOraciones('Novenas');
-    cargarCategoriaOraciones('Coronillas');
-    cargarCategoriaOraciones('DelCatecismo');
 
     document.querySelectorAll('[data-abrir-panel]').forEach(el => {
         el.addEventListener('click', () => {
@@ -836,6 +839,23 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     capaOscura.addEventListener('click', cerrarTodo);
+
+    if (btnRefrescarPanel) {
+        btnRefrescarPanel.addEventListener('click', () => {
+            cargarAvisosDesdeAppsScript();
+        });
+    }
+
+    // Solicitar almacenamiento persistente para evitar borrado automático de caché
+    if (navigator.storage && navigator.storage.persist) {
+        navigator.storage.persist().then(persisted => {
+            if (persisted) {
+                console.log('Almacenamiento persistente concedido');
+            } else {
+                console.log('Almacenamiento persistente no concedido');
+            }
+        });
+    }
 }
 );
 
