@@ -1,4 +1,4 @@
-const CACHE_NAME = 'coromoto-junio-2026-v0.12'; // Versión actualizada para limpiar caché
+const CACHE_NAME = 'coromoto-junio-2026-v0.13'; // Versión actualizada para limpiar caché
 const urlsToCache = [
     './',
     './index.html',
