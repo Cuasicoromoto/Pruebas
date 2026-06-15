@@ -210,7 +210,7 @@ const datos = {
             </div>
             <div class="contenido-acordeon contenido-conectado">
                 <div class="contenido-caja">
-                    <p style="font-size: 0.8rem; color: var(--oro); text-transform: uppercase; font-weight: 400; margin-bottom: 8px; letter-spacing: 1.2px;">
+                    <p class="frecuencia-horario">
                         ${c.frecuencia}
                     </p>
                     ${c.actividades.map(act => `
