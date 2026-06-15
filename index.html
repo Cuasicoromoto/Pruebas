@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coromoto - App Cuasiparroquial</title>
     <meta name="description"
         content="Aplicación oficial de la Cuasiparroquia Nuestra Señora de Coromoto. Avisos, devocionario, horarios y más.">
@@ -23,7 +23,7 @@
     <!-- Cabecera -->
     <header class="cabecera-minimalista">
         <div class="linea"></div>
-        <div><span>Cuasiparroquia 3</span>
+        <div><span>Cuasiparroquia</span>
             <h1>Nuestra Señora de Coromoto</h1>
         </div>
     </header>
@@ -128,8 +128,16 @@
 
     <div id="panel" class="panel-deslizable">
         <div class="cabecera-panel">
-            <span id="titulo-panel" class="titulo-panel">Título</span>
-            <span class="material-icons-round boton-cerrar">close</span>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span id="titulo-panel" class="titulo-panel">Título</span>
+                <span id="cargando-panel" class="material-icons-round rotar"
+                    style="font-size: 1.1rem; color: var(--oro); display: none;">sync</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+                <span id="btn-refrescar-panel" class="material-icons-round"
+                    style="font-size: 1.3rem; color: var(--oro); cursor: pointer; display: none;">refresh</span>
+                <span class="material-icons-round boton-cerrar">close</span>
+            </div>
         </div>
         <div id="contenido-panel" class="contenido-panel"></div>
     </div>
@@ -159,11 +167,12 @@
     </div>
 
     <!-- Lógica de la aplicación -->
+    <script src="oraciones.js"></script>
     <script src="script.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                const swUrl = './sw.js?v=0.030';
+                const swUrl = './sw.js';
 
                 navigator.serviceWorker.register(swUrl)
                     .then(reg => {
@@ -176,8 +185,6 @@
             });
 
             // 3. Detectar cuando el nuevo SW toma el control y recargar la página automáticamente
-
-            /*
             let refreshing = false;
             navigator.serviceWorker.addEventListener('controllerchange', () => {
                 if (!refreshing) {
@@ -185,30 +192,8 @@
                     refreshing = true;
                 }
             });
-            */
-
-            let refreshing = false;
-            navigator.serviceWorker.addEventListener('controllerchange', () => {
-                if (!refreshing) {
-                    // 1. Ocultamos suavemente la interfaz antes de recargar
-                    document.body.style.transition = 'opacity 0.2s ease';
-                    document.body.style.opacity = '0';
-
-                    // 2. Esperamos un instante para que el navegador procese el cambio
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 150);
-
-                    refreshing = true;
-                }
-            });
         }
     </script>
-
-    <!-- 
-    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-    <script>eruda.init();</script>
-    -->
 
 </body>
 
