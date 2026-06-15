@@ -1,9 +1,10 @@
-const CACHE_NAME = 'coromoto-marzo-2026-v0.030'; // Recuerda subir este número
+const CACHE_NAME = 'coromoto-junio-2026-v0.10'; // Recuerda subir este número
 const urlsToCache = [
     './',
     './index.html',
     './styles.css',
     './script.js',
+    './oraciones.js',
     './manifest.json',
     './fonts/MaterialIconsRound.otf',
     './fonts/PlayfairDisplay-Regular.ttf',
@@ -44,22 +45,51 @@ self.addEventListener('activate', event => {
 
 // Estrategia: Cache con actualización en red (Stale-While-Revalidate)
 self.addEventListener('fetch', event => {
+    // 1. Solo interceptar peticiones GET
+    if (event.request.method !== 'GET') {
+        return;
+    }
+
+    // 2. Solo interceptar esquemas http y https (ignora chrome-extension, data:, etc.)
+    const url = new URL(event.request.url);
+    if (!url.protocol.startsWith('http')) {
+        return;
+    }
+
+    // 3. Excluir las peticiones dinámicas de Google Sheets de la caché del Service Worker
+    // para permitir que script.js maneje su propia sincronización en tiempo real
+    if (url.hostname.includes('script.google.com') || url.hostname.includes('script.googleusercontent.com')) {
+        return; // Deja pasar a la red directamente sin tocar la caché
+    }
+
+    // 4. Estrategia Stale-While-Revalidate para recursos estáticos del sitio
     event.respondWith(
         caches.match(event.request)
             .then(cachedResponse => {
-                // Si está en caché, lo devolvemos, pero lanzamos la red para actualizarlo
-                const fetchPromise = fetch(event.request).then(networkResponse => {
+                if (cachedResponse) {
+                    // Si está en caché, lo devolvemos inmediatamente y actualizamos en segundo plano
+                    fetch(event.request).then(networkResponse => {
+                        if (networkResponse && networkResponse.status === 200) {
+                            caches.open(CACHE_NAME).then(cache => {
+                                cache.put(event.request, networkResponse.clone());
+                            });
+                        }
+                    }).catch(() => {
+                        // Ignorar fallos de red en segundo plano (ej. si está offline)
+                    });
+                    return cachedResponse;
+                }
+
+                // Si no está en caché, lo solicitamos a la red directamente
+                return fetch(event.request).then(networkResponse => {
                     if (networkResponse && networkResponse.status === 200) {
+                        const responseClone = networkResponse.clone();
                         caches.open(CACHE_NAME).then(cache => {
-                            cache.put(event.request, networkResponse.clone());
+                            cache.put(event.request, responseClone);
                         });
                     }
                     return networkResponse;
-                }).catch(() => {
-                    // Si falla la red (offline), no pasa nada, ya servimos la caché
                 });
-
-                return cachedResponse || fetchPromise;
             })
     );
 });
