@@ -68,7 +68,6 @@ html {
     overscroll-behavior-y: none;
 }
 
-/*
 body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background-color: var(--beige-crema);
@@ -77,27 +76,6 @@ body {
     width: 100vw;
     overscroll-behavior-y: none;
     -webkit-overflow-scrolling: touch;
-    display: flex;
-    flex-direction: column;
-    max-width: 480px;
-    margin: 0 auto;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    position: relative;
-}
-*/
-body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background-color: var(--beige-crema);
-    color: var(--texto);
-
-    /* CAMBIO CLAVE: Altura fija, no mínima */
-    height: 100dvh;
-    width: 100vw;
-
-    /* Evita que el body entero se desplace */
-    overflow: hidden;
-    overscroll-behavior-y: none;
-
     display: flex;
     flex-direction: column;
     max-width: 480px;
@@ -299,23 +277,15 @@ body::before {
     margin-top: -2px;
 }
 
-/*
 .tablero-principal {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 20px 1rem;
+    /* Bajamos un poco el padding para ganar espacio */
     width: 100%;
-}
-*/
-/* El contenedor de tus avisos/oraciones debe ser el que tenga el scroll */
-.tablero-principal {
-    flex: 1;
-    /* Ocupa todo el espacio entre el header y el footer */
-    overflow-y: auto;
-    /* El scroll ocurre solo aquí */
-    -webkit-overflow-scrolling: touch;
+    /* Forzamos el ancho completo */
 }
 
 .tarjeta-principal {
@@ -1135,4 +1105,155 @@ body::before {
 
 .btn-cerrar-banner .material-icons-round {
     font-size: 1.2rem;
+}
+
+/* --- OPTIMIZACIÓN MÓVIL: BLOQUEO DE SELECCIÓN --- */
+.cabecera-minimalista,
+.barra-navegacion,
+.nav-item,
+.cabecera-acordeon,
+.lista-accion,
+.boton-oremos,
+.boton-cerrar,
+.btn-dia,
+.enlace-oracion,
+.enlace-web {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Animación de rotación para el spinner de sincronización */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.rotar {
+    display: inline-block;
+    animation: spin 1.5s linear infinite;
+}
+
+/* --- MODO OSCURO AUTOMÁTICO --- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --vinotinto: #9E1F2F;
+        --vinotinto-grad: linear-gradient(135deg, #4A0B12 0%, #761421 100%);
+        --oro: #D4AF37;
+        --oro-suave: #624F2C;
+        --oro-grad: linear-gradient(135deg, #D4AF37 0%, #F5E8C3 50%, #D4AF37 100%);
+        --beige-crema: #120F0F;
+        --blanco-puro: #1A1616;
+        --blanco: #1E1A1A;
+        --azul: #93B5D6;
+        --texto: #EADCD4;
+        --gris-linea: rgba(255, 255, 255, 0.15);
+    }
+
+    body::before {
+        opacity: 0.15;
+    }
+
+    /* Ajustes específicos para elementos oscuros */
+    .boton-cerrar {
+        background: #2D2525 !important;
+        color: #EADCD4 !important;
+    }
+
+    .btn-dia {
+        background: #1E1A1A !important;
+        color: #EADCD4 !important;
+    }
+    
+    .btn-dia.activo {
+        background: var(--vinotinto) !important;
+        color: #FFFFFF !important;
+        border-color: var(--vinotinto) !important;
+    }
+
+    .contenido-dia-box {
+        background: #181515 !important;
+        border-color: var(--oro) !important;
+    }
+
+    .enlace-oracion {
+        border-bottom: 1px solid #2D2525 !important;
+        color: #CCC !important;
+    }
+
+    .enlace-web {
+        border-bottom: 1px solid #2D2525 !important;
+        color: #EADCD4 !important;
+    }
+
+    .enlace-web:first-child {
+        border-top: 1px solid #2D2525 !important;
+    }
+
+    .enlace-web:active {
+        background-color: rgba(212, 175, 55, 0.15) !important;
+    }
+
+    /* Sobrescribir fondos grises inline (#eee) en datos bancarios y otros */
+    .contenido-caja p b,
+    .contenido-caja p span {
+        color: #EADCD4 !important;
+    }
+
+    p[style*="font-family: monospace"],
+    p[style*="background: #eee"],
+    p[style*="background:#eee"] {
+        background: #262020 !important;
+        color: #D4AF37 !important;
+        border: 1px solid #3A3030 !important;
+    }
+
+    /* Separadores y líneas del devocionario y avisos */
+    .grupo-timeline::before {
+        background: #3D2D2D !important;
+    }
+
+    .grupo-timeline .aviso-fecha {
+        background: #1A1616 !important;
+        border-color: #554030 !important;
+    }
+
+    .aviso-fecha b {
+        color: #EADCD4 !important;
+    }
+
+    .aviso-fila {
+        border-bottom: 1px solid #3D2D2D !important;
+    }
+
+    /* Cajas de información */
+    .caja-info {
+        border-color: var(--oro) !important;
+    }
+
+    .caja-info h4 {
+        background: #1A1616 !important;
+    }
+
+    /* Modales deslizables */
+    .cabecera-panel {
+        background: #1A1616 !important;
+    }
+
+    /* Elementos especiales de liturgia */
+    .texto-oracion {
+        color: #EADCD4 !important;
+    }
+
+    .texto-oracion p i {
+        color: #FF5A60 !important; /* Vinotinto brillante/rojo litúrgico para oraciones y respuestas */
+    }
+
+    .texto-oracion h3 {
+        color: #FF4D55 !important;
+    }
+
+    .amen-final {
+        color: #FF4D55 !important;
+    }
 }
