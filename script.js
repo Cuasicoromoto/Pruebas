@@ -31,7 +31,6 @@ const COMUNES = {
     cierre: `<br><h3>Jaculatoria final</h3> <p class="jaculatoria">Ave María Purísima. <br><i>Sin pecado original concebida.</i></p>`
 };
 
-
 const oracionesTexto = {
     '<!-- Oraciones cotidianas -->': ``,
     '<!-- Oraciones varias -->': ``,
@@ -152,13 +151,13 @@ const datos = {
         frecuencia: 'Todos los sábados',
         actividades: [{
             nombre: 'Conversatorio de la Fe',
-            hora: '2:00 PM'
+            hora: '2:30 PM'
         }, {
             nombre: 'Celebración de la Palabra',
             hora: '3:00 PM'
         }, {
             nombre: 'Catequesis',
-            hora: '2:00 PM'
+            hora: '---'
         }]
     }, {
         nombre: 'Capilla Jesús <br>de la Divina Misericordia',
@@ -226,22 +225,25 @@ const datos = {
         descripcion: 'Cáritas es el corazón solidario de nuestra Cuasiparroquia. A través de este apostolado buscamos acompañar a los más necesitados, ofreciendo ayuda material, escucha fraterna y esperanza. Cada gesto de servicio es una manera concreta de hacer presente el amor de Cristo en quienes atraviesan momentos difíciles.'
     }, {
         nombre: 'Catequesis',
-        descripcion: 'La catequesis es el apostolado evangelizador por excelencia. Aquí, catequistas entregan su tiempo y vocación para transmitir la fe, acompañando a niños, jóvenes y adultos en su iniciación cristiana. Es un espacio donde se siembra la Palabra de Dios, preparando corazones para una vida plena en Cristo.'
+        descripcion: 'La catequesis es el apostolado evangelizador por excelencia. Aquí, los catequistas entregan su tiempo y vocación para transmitir la fe, acompañando a niños, adolescentes, jóvenes y adultos en su iniciación cristiana. Es un espacio donde se siembra la Palabra de Dios, preparando corazones para una vida plena en Cristo.'
     }, {
         nombre: 'Ministerio de Música',
-        descripcion: 'El Ministerio de Música es el alma sonora de nuestra Cuasiparroquia. A través de este apostolado, músicos y cantores elevan la oración y la alegría de la fe, acompañando las celebraciones litúrgicas con melodías que inspiran y unen a la comunidad en alabanza y adoración.'
+        descripcion: 'El Ministerio de Música es el alma sonora de nuestra Cuasiparroquia. A través de este apostolado, los músicos y cantores enriquecen con su servicio las celebraciones litúrgicas, uniendo a la comunidad en oración, alabanza y adoración.'
     }, {
         nombre: 'Monaguillos',
-        descripcion: 'Los monaguillos son niños y jóvenes servidores del altar que, con entusiasmo y dedicación, apoyan en las celebraciones litúrgicas. Este apostolado les permite crecer en la fe, aprender el valor del servicio y descubrir la belleza de la liturgia. Su presencia es signo de esperanza y compromiso en el camino cristiano.'
+        descripcion: 'Los monaguillos son niños y adolescentes servidores del altar que, con entusiasmo, apoyan en las celebraciones litúrgicas. Este apostolado les permite crecer en la fe, aprender el valor del servicio y descubrir la belleza de la liturgia. Su presencia es signo de esperanza en la vida de nuestra Cuasiparroquia.'
     }, {
         nombre: 'Grupo Juniors',
-        descripcion: 'El grupo juvenil es un espacio de encuentro, amistad y misión, donde adolescentes y jóvenes comparten su energía, creatividad y alegría para construir comunidad y vivir el Evangelio. Este apostolado les permite crecer juntos, descubrir sus dones y ser protagonistas de la vida parroquial, llevando la fe a cada rincón con entusiasmo.'
+        descripcion: 'El grupo juvenil es un espacio de encuentro, amistad y misión, donde adolescentes y jóvenes comparten su energía, creatividad y alegría para construir comunidad y vivir el Evangelio. Este apostolado les permite crecer juntos, descubrir sus dones y ser protagonistas de la vida cuasiparroquial, llevando la fe con entusiasmo.'
     }, {
         nombre: 'Grupo Másters',
-        descripcion: 'El grupo Máster reúne a adultos comprometidos que, con experiencia y madurez, sostienen la misión de la Cuasiparroquia. Son servidores que acompañan, orientan y fortalecen la vida comunitaria con su testimonio de fe y entrega. Su presencia inspira a las nuevas generaciones.'
+        descripcion: 'El grupo Máster reúne a adultos comprometidos que, con experiencia y madurez, sostienen la misión de la Cuasiparroquia. Son servidores que acompañan y fortalecen la vida comunitaria con su testimonio de fe y entrega. Su presencia inspira a las nuevas generaciones.'
+    }, {
+        nombre: 'Custodios de la Coromoto',
+        descripcion: 'Los Custodios de la Coromoto son un pequeño grupo de servidores dedicados al cuidado y acompañamiento de la sagrada imagen de nuestra patrona en su camino de peregrinación. A ejemplo de San José, con un entusiasmo admirable, son los encargados de escoltar a la Virgen María en su encuentro con la comunidad, asegurando que su presencia llegue a cada comunidad con la dignidad y el fervor que nuestra Madre merece.'
     }, {
         nombre: 'Los Amigos de Jesús',
-        descripcion: 'Los Amigos de Jesús es una comunidad de servidores llamados a vivir aquellas palabras "Ya no los llamo siervos, sino amigos" (Jn 15,15). Es el conjunto de todos los apostolados de la Cuasiparroquia que busca transformar la vida cotidiana en un encuentro constante con el amor de Dios. <br><br>Cada miembro, desde su realidad particular, se convierte en un testigo del Evangelio, llevando la luz de la fe a sus familias, a sus trabajos y a sus comunidades. <br><br>Ser un Amigo de Jesús es responder con un "sí" alegre a la invitación de dar fruto abundante, sabiendo que en esta amistad no hay lugar para el miedo, solo para la esperanza y el servicio.'
+        descripcion: 'Los Amigos de Jesús es una comunidad de servidores llamados a vivir aquellas palabras "Ya no los llamo siervos, sino amigos" (Jn 15,15). Es el conjunto de todos los apostolados de la Cuasiparroquia que busca transformar la vida cotidiana en un encuentro constante con el amor de Dios. <br><br>Cada miembro, desde su realidad particular, se convierte en un testigo del Evangelio, llevando la luz de la fe a sus familias, a sus trabajos y a sus comunidades. <br><br>Ser un Amigo de Jesús es responder con un "sí" alegre a la invitación de dar fruto abundante, sabiendo que en esta amistad no hay lugar para el miedo, sino sólo para la esperanza y el servicio.'
     }].map(a => `
         <div class="acordeon">
             <div class="cabecera-acordeon" data-accion="toggle-acordeon">
@@ -262,17 +264,17 @@ const datos = {
     'Obras': [{
         nombre: 'Ancianato',
         icon: 'elderly',
-        desc: 'Es una casa para el reposo, donde actualmente logramos brindar atención a 15 abuelos. Más que una institución, este espacio busca ser un verdadero hogar cimentado en la caridad y el respeto, donde cada adulto mayor es valorado como un tesoro vivo. Aquí, la caridad no es solo asistencia, es el compromiso de ofrecerles una vida digna. <br><br><b>¿Cómo puedes ayudar?</b> Tú también puedes ser parte de <i>Los Amigos del Abuelo</i> a través de aportes de alimentos, medicinas, artículos de higiene, o brindando tu tiempo en el voluntariado. Cada gesto, por pequeño que sea, nos ayuda a sostener este espacio de caridad y esperanza. <br><br><b>Horarios de visitas:</b>',
-        items: ['Martes a jueves <br>de 2:00 a 5:00 PM.', 'Domingos <br>de 10:00 AM a 4:00 PM.']
+        desc: 'Es una casa para el reposo donde actualmente logramos brindar atención a 14 abuelos. Más que una institución, este espacio busca ser un verdadero hogar cimentado en la caridad, donde cada abuelo es valorado como un tesoro vivo. Aquí, la caridad se convierte en el compromiso de ofrecerles una vida digna. <br><br><b>¿Cómo puedes ayudar?</b> Tú también puedes ser parte de <i>Los Amigos del Abuelo</i> a través de aportes de alimentos, medicinas, artículos de higiene, o brindando tu tiempo en el voluntariado. Para coordinar puedes contactarnos. <br><br><b>Horarios de visitas:</b>',
+        items: ['Martes, miércoles y jueves <br>de 2:00 PM a 4:00 PM.', 'Domingos <br>de 10:00 AM a 4:00 PM.']
     }, {
         nombre: 'Columbario',
         icon: 'hexagon',
-        desc: 'El columbario es un lugar sagrado, donde las cenizas de nuestros seres queridos reposan en la paz del Señor y la memoria se convierte en oración constante. Este lugar de esperanza refleja nuestra fe en la resurrección, ofreciendo a las familias un entorno digno y cercano para honrar a quienes ya han partido a la Casa del Padre. <br><br>Si deseas información sobre la adquisición de nichos, puedes contactar con la Cuasiparroquia. <br><br><b>Requisitos:</b>',
-        items: ['Certificado de defunción.', 'Certificado de cremación.', 'Cédula de identidad del difunto.', 'Cédula de identidad y Rif del familiar responsable.']
+        desc: 'El columbario es un lugar sagrado, donde las cenizas de nuestros seres queridos reposan en la paz del Señor y la memoria se convierte en oración constante. Este lugar de esperanza ofrece a las familias un espacio digno y cercano para honrar a quienes ya han partido a la Casa del Padre. <br><br>Si deseas información sobre la adquisición de nichos, puedes contactar con la Cuasiparroquia. <br><br><b>Requisitos:</b>',
+        items: ['Certificado de defunción.', 'Certificado de cremación.', 'Cédula de identidad del difunto.', 'Cédula de identidad y', 'Rif del familiar responsable.']
     }, {
         nombre: 'Casa de Retiros',
         icon: 'cottage',
-        desc: 'Un lugar de paz y encuentro en el corazón de nuestra Cuasiparroquia. Nuestra Casa de Retiros es un espacio sagrado diseñado para el recogimiento del alma, donde grupos y comunidades pueden apartarse del ruido del mundo para escuchar la voz de Dios. Es el escenario ideal para retiros, convivencias y jornadas de oración que buscan renovar el espíritu y fortalecer los lazos de fraternidad. <br><br><b>Bondades:</b>:',
+        desc: 'Un lugar de paz y encuentro en el corazón de nuestra Cuasiparroquia. Nuestra Casa de Retiros es un espacio diseñado para el recogimiento del alma, donde grupos y comunidades pueden apartarse del ruido del mundo para escuchar la voz de Dios. Es el lugar ideal para retiros, convivencias y jornadas de oración que buscan renovar el espíritu y fortalecer los lazos de fraternidad. <br><br><b>Bondades:</b>',
         items: ['Comedor.', 'Espacios abiertos.', 'Salón de reuniones.', 'Habitaciones compartidas.', 'Capacidad hasta para 60 personas.', 'Capilla con la presencia del Santísimo.']
     }].map(o => `
         <div class="acordeon">
@@ -479,7 +481,7 @@ const datos = {
                 </p>
                 <p style="margin-bottom: 0;"><b>RIF:</b></p>
                 <p style="margin-top: 0; font-family: monospace; background: #eee; padding: 4px 8px; border-radius: 5px; font-size: 0.85rem;">
-                    J-504929760
+                    J-50492976-0
                 </p>
             </div>
         </div>
@@ -491,7 +493,7 @@ const datos = {
             <p style="margin-top: 10px; font-size: 0.75rem; color: #888;">
                 También puedes comunicarte vía WhatsApp<br>
                 <a href="https://wa.me/584142711341" target="_blank" style="text-decoration: none; color: inherit;">
-                <span style="font-size:1rem; color: var(--vinotinto);">0414 2711341</span></a>
+                <span style="font-size:1rem; color: var(--vinotinto);">+58 414 271 1341</span></a>
             </p>
         </div>
     `,
@@ -512,12 +514,11 @@ const datos = {
                 <a href="https://conferenciaepiscopalvenezolana.com/" target="_blank" class="enlace-web">
                     Conferencia Episcopal Venezolana <span>Ir</span>
                 </a>
-                <a href="https://ompvzla.com/" target="_blank" class="enlace-web">
-                    Obras Misionales Pontificias Venezuela <span>Ir</span>
-                </a>
+                <!--
                 <a href="https://www.aciprensa.com/" target="_blank" class="enlace-web">
                     Aciprensa <span>Ir</span>
                 </a>
+                -->
             </div>
         </div>
 
@@ -721,47 +722,7 @@ function renderizarAvisos(avisos) {
     if (grupoAbierto) html += `</div>`;
     return html;
 }
-/*
-// Función principal para cargar desde Apps Script
-async function cargarAvisosDesdeAppsScript() {
-    // RECUERDA PONER AQUÍ LA URL DE TU SCRIPT
-    const webAppUrl = 'https://script.google.com/macros/s/AKfycbyWYf7jJAm794SohA8UBj62wjYDur2I2mgLjrL5-mCEjLcs9qq-gtLLc0n9h0xijlzO/exec?tipo=Avisos';
-    /*const webAppUrl = 'https://script.google.com/macros/s/AKfycbw0-_dLWDfhLxXzmkrMBehYj5jL31rNn7CVQ6qsZ_Phvd5ToTzzgEuSUqAPdVwapfC1/exec';*/
 
-// A. Revisamos si hay datos guardados (Ahora guardamos el JSON crudo, no el HTML)
-/*    const avisosGuardados = localStorage.getItem('avisos_cuasiparroquiales_json');
-    if (avisosGuardados) {
-        try {
-            const avisos = JSON.parse(avisosGuardados);
-            contenidoPanel.innerHTML = renderizarAvisos(avisos); // Renderiza y oculta los que acaban de expirar
-        } catch (e) {
-            contenidoPanel.innerHTML = '<div style="text-align:center; padding: 20px; font-weight: bold; color: var(--vinotinto);">Cargando avisos...</div>';
-        }
-    } else {
-        contenidoPanel.innerHTML = '<div style="text-align:center; padding: 20px; font-weight: bold; color: var(--vinotinto);">Cargando avisos...</div>';
-    }
-
-    // B. Conexión a internet para buscar eventos nuevos
-    if (navigator.onLine) {
-        try {
-            const response = await fetch(webAppUrl);
-            const avisos = await response.json();
-
-            // C. Refrescamos la pantalla con los nuevos datos filtrados
-            contenidoPanel.innerHTML = renderizarAvisos(avisos);
-
-            // D. Guardamos el JSON crudo para la próxima vez
-            localStorage.setItem('avisos_cuasiparroquiales_json', JSON.stringify(avisos));
-
-        } catch (error) {
-            console.error("Error al cargar desde Google:", error);
-            if (!avisosGuardados) {
-                contenidoPanel.innerHTML = '<div style="text-align:center; padding: 20px; color: #888;">No hay conexión a internet y no hay avisos recientes guardados.</div>';
-            }
-        }
-    }
-}
-*/
 async function cargarAvisosDesdeAppsScript() {
     // RECUERDA PONER AQUÍ LA URL DE TU SCRIPT
     const webAppUrl = 'https://script.google.com/macros/s/AKfycbzhffrPj7V5bJ3IOWD0puAv6i5GE_i__8rc5Q7xdqgXwq8Ww5zQY9KRryAy1LkWf1Aj/exec?tipo=Avisos';
@@ -830,7 +791,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Desplazar el scroll para que su contenido se vea completo
                 setTimeout(() => {
-                    acordeonActual.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const margenSuperior = 75; // Cambia este valor (en píxeles) para ajustar la altura
+                    const posicionDestino = acordeonActual.offsetTop - margenSuperior;
+                    contenidoPanel.scrollTo({
+                        top: posicionDestino,
+                        behavior: 'smooth'
+                    });
                 }, 300);
             }
         }
