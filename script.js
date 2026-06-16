@@ -264,17 +264,17 @@ const datos = {
     'Obras': [{
         nombre: 'Ancianato',
         icon: 'elderly',
-        desc: 'Es una casa para el reposo donde actualmente logramos brindar atención a 14 abuelos. Más que una institución, este espacio busca ser un verdadero hogar cimentado en la caridad, donde cada abuelo es valorado como un tesoro vivo. Aquí, la caridad se convierte en el compromiso de ofrecerles una vida digna. <br><br><b>¿Cómo puedes ayudar?</b> Tú también puedes ser parte de <i>Los Amigos del Abuelo</i> a través de aportes de alimentos, medicinas, artículos de higiene, o brindando tu tiempo en el voluntariado. Para coordinar puedes contactarnos. <br><br><b>Horarios de visitas:</b>',
+        desc: 'Es una casa para el reposo donde actualmente logramos brindar atención a 14 abuelos. Más que una institución, este espacio busca ser un verdadero hogar cimentado en la caridad, donde cada abuelo es valorado como un tesoro vivo. Aquí, la caridad se convierte en el compromiso de ofrecerles una vida digna. <br><br><b>¿Cómo puedes ayudar?</b> Tú también puedes ser parte de <i>Los Amigos del Abuelo</i> a través de aportes de alimentos, medicinas, artículos de higiene, o brindando tu tiempo en el voluntariado. <br><br><span class="enlace-navegacion" data-ir-a="Apoyar">Para mayor información, <br>puedes contactarnos aquí.</span> <br><br><b>Horarios de visitas:</b>',
         items: ['Martes, miércoles y jueves <br>de 2:00 PM a 4:00 PM.', 'Domingos <br>de 10:00 AM a 4:00 PM.']
     }, {
         nombre: 'Columbario',
         icon: 'hexagon',
-        desc: 'El columbario es un lugar sagrado, donde las cenizas de nuestros seres queridos reposan en la paz del Señor y la memoria se convierte en oración constante. Este lugar de esperanza ofrece a las familias un espacio digno y cercano para honrar a quienes ya han partido a la Casa del Padre. <br><br>Si deseas información sobre la adquisición de nichos, puedes contactar con la Cuasiparroquia. <br><br><b>Requisitos:</b>',
+        desc: 'El columbario es un lugar sagrado, donde las cenizas de nuestros seres queridos reposan en la paz del Señor y la memoria se convierte en oración constante. Este lugar de esperanza ofrece a las familias un espacio digno y cercano para honrar a quienes ya han partido a la Casa del Padre. <br><br><span class="enlace-navegacion" data-ir-a="Apoyar">Para mayor información, <br>puedes contactarnos aquí.</span> <br><br><b>Requisitos:</b>',
         items: ['Certificado de defunción.', 'Certificado de cremación.', 'Cédula de identidad del difunto.', 'Cédula de identidad y', 'Rif del familiar responsable.']
     }, {
         nombre: 'Casa de Retiros',
         icon: 'cottage',
-        desc: 'Un lugar de paz y encuentro en el corazón de nuestra Cuasiparroquia. Nuestra Casa de Retiros es un espacio diseñado para el recogimiento del alma, donde grupos y comunidades pueden apartarse del ruido del mundo para escuchar la voz de Dios. Es el lugar ideal para retiros, convivencias y jornadas de oración que buscan renovar el espíritu y fortalecer los lazos de fraternidad. <br><br><b>Bondades:</b>',
+        desc: 'Un lugar de paz y encuentro en el corazón de nuestra Cuasiparroquia. Nuestra Casa de Retiros es un espacio diseñado para el recogimiento del alma, donde grupos y comunidades pueden apartarse del ruido del mundo para escuchar la voz de Dios. Es el lugar ideal para retiros, convivencias y jornadas de oración que buscan renovar el espíritu y fortalecer los lazos de fraternidad. <br><br><span class="enlace-navegacion" data-ir-a="Apoyar">Para mayor información, <br>puedes contactarnos aquí.</span> <br><br><b>Bondades:</b>',
         items: ['Comedor.', 'Espacios abiertos.', 'Salón de reuniones.', 'Habitaciones compartidas.', 'Capacidad hasta para 60 personas.', 'Capilla con la presencia del Santísimo.']
     }].map(o => `
         <div class="acordeon">
@@ -862,6 +862,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const abrirSubBtn = e.target.closest('[data-accion="abrir-subpanel"]');
         if (abrirSubBtn) {
             abrirSubPanel(abrirSubBtn.dataset.valor);
+        }
+
+        // Navegación interna entre paneles (ej: "puedes contactarnos" en Ancianato → Apoyar)
+        const enlaceNav = e.target.closest('.enlace-navegacion');
+        if (enlaceNav) {
+            const destino = enlaceNav.dataset.irA;
+            if (destino) {
+                cerrarPanel();
+                setTimeout(() => abrirPanel(destino), 350);
+            }
         }
     }
     );
