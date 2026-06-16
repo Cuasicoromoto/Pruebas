@@ -1148,3 +1148,15 @@ body::before {
     display: inline-block;
     animation: spin 1.5s linear infinite;
 }
+
+.enlace-navegacion {
+    color: var(--vinotinto);
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.enlace-navegacion:active {
+    opacity: 0.6;
+}
