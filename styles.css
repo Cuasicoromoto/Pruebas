@@ -655,8 +655,8 @@ body::before {
 
 .contenido-caja p {
     font-size: 0.9rem;
-    color: #555;
-    line-height: 1.5;
+    /*color: #555;*/
+    line-height: 1.25;
     margin: 10px;
 }
 
@@ -690,14 +690,23 @@ body::before {
 .linea-horaria {
     display: flex;
     justify-content: space-between;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     padding: 0.15rem 0.5rem;
-    border-bottom: 1px solid #ddd;
-    letter-spacing: 1px;
+    border-bottom: 0.5px solid var(--oro-suave);
+    /*letter-spacing: 1px;*/
 }
 
 .linea-horaria:first-of-type {
-    border-top: 1px solid #ddd;
+    border-top: 0.5px solid var(--oro-suave);
+}
+
+.frecuencia-horario {
+    font-size: 0.8rem;
+    color: var(--oro);
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 8px;
+    letter-spacing: 1.2px;
 }
 
 .cabecera-acordeon {
