@@ -471,16 +471,16 @@ const datos = {
         <div class="caja-info">
             <h4><span class="material-icons-round">account_balance</span> Transferencia</h4>
             <div class="contenido-caja">
-                <p style="margin-bottom: 0;"><b>A nombre de:</b></p>
-                <p style="margin-top: 0; font-family: monospace; background: #eee; padding: 4px 8px; border-radius: 5px; font-size: 0.85rem;">
+                <p style="margin-bottom: 0;">A nombre de:</p>
+                <p style="margin-top: 0; font-family: monospace; background: #eee; padding: 4px 8px; border-radius: 5px; font-size: 0.85rem; text-align: center;">
                     Cuasiparroquia Nuestra <br>Señora de Coromoto
                 </p>
-                <p style="margin-bottom: 0;"><b>Cuenta Corriente:</b></p>
-                <p style="margin-top: 0; font-family: monospace; background: #eee; padding: 4px 8px; border-radius: 5px; font-size: 0.85rem;">
+                <p style="margin-bottom: 0;">Cuenta Corriente:</p>
+                <p style="margin-top: 0; font-family: monospace; background: #eee; padding: 4px 8px; border-radius: 5px; font-size: 0.85rem; text-align: center;">
                     0172-0131-0113-1578-4742
                 </p>
-                <p style="margin-bottom: 0;"><b>RIF:</b></p>
-                <p style="margin-top: 0; font-family: monospace; background: #eee; padding: 4px 8px; border-radius: 5px; font-size: 0.85rem;">
+                <p style="margin-bottom: 0;">RIF:</p>
+                <p style="margin-top: 0; font-family: monospace; background: #eee; padding: 4px 8px; border-radius: 5px; font-size: 0.85rem; text-align: center;">
                     J-50492976-0
                 </p>
             </div>
@@ -544,7 +544,6 @@ const tituloPanel = document.getElementById('titulo-panel');
 const contenidoPanel = document.getElementById('contenido-panel');
 const subTitulo = document.getElementById('sub-titulo');
 const subContenido = document.getElementById('sub-contenido');
-const cargandoPanel = document.getElementById('cargando-panel');
 const btnRefrescarPanel = document.getElementById('btn-refrescar-panel');
 
 const oracionesSinAmen = ['Angelus', 'A San José', 'Misterios Gozosos', 'Misterios Luminosos', 'Misterios Dolorosos', 'Misterios Gloriosos', 'Novena a la Virgen de Coromoto', 'Mandamientos', 'Sacramentos', 'Obras de Misericordia Corporales', 'Obras de Misericordia Espirituales', 'Preparación para la confesión', 'Los siete dones del Espíritu Santo'];
@@ -586,7 +585,6 @@ async function abrirPanel(titulo) {
         await cargarAvisosDesdeAppsScript();
     } else {
         if (btnRefrescarPanel) btnRefrescarPanel.style.display = 'none';
-        if (cargandoPanel) cargandoPanel.style.display = 'none';
         // Carga normal para el resto de apartados (horarios, devocionario, etc.)
         const contenido = datos[titulo];
         if (!contenido) {
@@ -723,11 +721,68 @@ function renderizarAvisos(avisos) {
     return html;
 }
 
+async function cargarTarjetaPrincipal() {
+    //const webAppUrl = 'https://script.google.com/macros/s/AKfycbzhffrPj7V5bJ3IOWD0puAv6i5GE_i__8rc5Q7xdqgXwq8Ww5zQY9KRryAy1LkWf1Aj/exec?tipo=Principal';
+    const webAppUrl = 'https://script.google.com/macros/s/AKfycbyMrRDjRxsPpkfLY_ilCaRPRfihMUnNCaNtKG94SZ8FvLpzVtHsE7qC2swibSFsnYRc/exec?tipo=Principal'
+
+    const tituloEl = document.getElementById('principal-titulo');
+    const contenidoEl = document.getElementById('principal-contenido');
+    const fechaEl = document.getElementById('principal-fecha');
+
+    if (!tituloEl || !contenidoEl || !fechaEl) return;
+
+    // A. Mostrar datos guardados inmediatamente (caché offline)
+    const guardado = localStorage.getItem('tarjeta_principal_json');
+    if (guardado) {
+        try {
+            const datos = JSON.parse(guardado);
+            aplicarTarjetaPrincipal(datos, tituloEl, contenidoEl, fechaEl);
+        } catch (e) {
+            tituloEl.textContent = 'Cargando...';
+        }
+    }
+
+    // B. Fetch desde internet
+    try {
+        const response = await fetch(webAppUrl);
+        const json = await response.json();
+
+        // El Apps Script genérico devuelve un array; tomamos la primera fila
+        const datos = Array.isArray(json) ? json[0] : json;
+
+        // Esperamos tener al menos título o contenido
+        if (datos && (datos.titulo || datos.contenido)) {
+            aplicarTarjetaPrincipal(datos, tituloEl, contenidoEl, fechaEl);
+            localStorage.setItem('tarjeta_principal_json', JSON.stringify(datos));
+        }
+    } catch (error) {
+        console.error('Error cargando tarjeta principal:', error);
+        // Si no hay caché, mostrar mensaje
+        if (!guardado) {
+            tituloEl.textContent = 'Avisos Cuasiparroquiales';
+            contenidoEl.textContent = 'Próximamente...';
+        }
+    }
+}
+
+function aplicarTarjetaPrincipal(datos, tituloEl, contenidoEl, fechaEl) {
+    tituloEl.textContent = datos.titulo || '';
+    contenidoEl.innerHTML = (datos.contenido || '').replace(/\n/g, '<br>');
+
+    if (datos.fecha) {
+        fechaEl.textContent = datos.fecha;
+    }
+    if (datos.datetime) {
+        fechaEl.setAttribute('datetime', datos.datetime);
+    }
+}
+
 async function cargarAvisosDesdeAppsScript() {
     // RECUERDA PONER AQUÍ LA URL DE TU SCRIPT
-    const webAppUrl = 'https://script.google.com/macros/s/AKfycbzhffrPj7V5bJ3IOWD0puAv6i5GE_i__8rc5Q7xdqgXwq8Ww5zQY9KRryAy1LkWf1Aj/exec?tipo=Avisos';
+    //const webAppUrl = 'https://script.google.com/macros/s/AKfycbzhffrPj7V5bJ3IOWD0puAv6i5GE_i__8rc5Q7xdqgXwq8Ww5zQY9KRryAy1LkWf1Aj/exec?tipo=Avisos';
+    const webAppUrl = 'https://script.google.com/macros/s/AKfycbyMrRDjRxsPpkfLY_ilCaRPRfihMUnNCaNtKG94SZ8FvLpzVtHsE7qC2swibSFsnYRc/exec?tipo=Avisos'
 
-    if (cargandoPanel) cargandoPanel.style.display = 'inline-block';
+    if (btnRefrescarPanel) btnRefrescarPanel.classList.add('rotar');
 
     // A. Revisamos si hay datos guardados (Ahora guardamos el JSON crudo, no el HTML)
     const avisosGuardados = localStorage.getItem('avisos_cuasiparroquiales_json');
@@ -759,11 +814,14 @@ async function cargarAvisosDesdeAppsScript() {
             contenidoPanel.innerHTML = '<div style="text-align:center; padding: 20px; color: #888;">No hay conexión a internet y no hay avisos recientes guardados.</div>';
         }
     } finally {
-        if (cargandoPanel) cargandoPanel.style.display = 'none';
+        if (btnRefrescarPanel) btnRefrescarPanel.classList.remove('rotar');
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Cargar tarjeta principal desde Google Sheets
+    cargarTarjetaPrincipal();
 
     document.querySelectorAll('[data-abrir-panel]').forEach(el => {
         el.addEventListener('click', () => {
