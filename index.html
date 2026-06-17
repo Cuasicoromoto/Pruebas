@@ -23,25 +23,31 @@
     <!-- Cabecera -->
     <header class="cabecera-minimalista">
         <div class="linea"></div>
-        <div><span>Cuasiparroquia .c</span>
+        <div><span>Cuasiparroquia .E</span>
             <h1>Nuestra Señora de Coromoto</h1>
         </div>
     </header>
 
     <main class="tablero-principal">
-        <!-- 1. Avisos (Principal) — Se carga dinámicamente desde Google Sheets -->
+        <!-- 1. Avisos (Principal) — Carrusel de avisos -->
         <div class="tarjeta-principal" data-abrir-panel="Avisos Cuasiparroquiales">
             <span class="material-icons-round icono-maximizar">open_in_full</span>
             <span class="badge-noticia">Avisos Cuasiparroquiales</span>
 
-            <h2 id="principal-titulo">Cargando...</h2>
-            <p id="principal-contenido"></p>
-            <div class="noticia-meta">
-                <div class="meta-item">
-                    <span class="material-icons-round" aria-hidden="true">calendar_today</span>
-                    <time id="principal-fecha" datetime=""></time>
+            <div class="carrusel-contenedor">
+                <div class="carrusel-slide activo" id="slide-0">
+                    <h2 class="principal-titulo">Cargando...</h2>
+                    <p class="principal-contenido"></p>
+                    <div class="noticia-meta">
+                        <div class="meta-item">
+                            <span class="material-icons-round" aria-hidden="true">calendar_today</span>
+                            <time class="principal-fecha" datetime=""></time>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="carrusel-puntos" id="carrusel-puntos"></div>
         </div>
 
         <!-- 3. Rejilla de botones 2x2 -->
