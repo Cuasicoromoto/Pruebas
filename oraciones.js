@@ -10,7 +10,6 @@
 //    5. Para negrita (títulos dentro del texto):  <b>texto</b>
 // =============================================================
 
-
 // ==========================================================
 //  ORACIONES COTIDIANAS
 // ==========================================================
@@ -131,7 +130,6 @@ const oracionesCotidianas = {
     `,
 
 };
-
 
 // ==========================================================
 //  ORACIONES VARIAS
@@ -432,7 +430,6 @@ const oracionesVarias = {
 
 };
 
-
 // ==========================================================
 //  CORONILLAS
 // ==========================================================
@@ -606,7 +603,6 @@ const oracionesCoronillas = {
 
 };
 
-
 // ==========================================================
 //  DEL CATECISMO
 // ==========================================================
@@ -723,7 +719,6 @@ const oracionesCatecismo = {
 
 };
 
-
 // ==========================================================
 //  ESTRUCTURA DEL DEVOCIONARIO
 //  Define las categorías y sus oraciones para el menú.
@@ -748,6 +743,7 @@ const devocionarioCategorias = [
             { valor: 'Misterios Gloriosos', extra: '(mie y dom)' },
         ]
     },
+    /*
     {
         titulo: 'Novenas', icono: 'menu_book',
         lista: [
@@ -755,6 +751,7 @@ const devocionarioCategorias = [
             { valor: 'Novena a San José', texto: 'Novena a San José', extra: 'Ver' },
         ]
     },
+    */
     { titulo: 'Coronillas', icono: 'menu_book', fuente: oracionesCoronillas },
     { titulo: 'Del Catecismo', icono: 'menu_book', fuente: oracionesCatecismo },
 ];
