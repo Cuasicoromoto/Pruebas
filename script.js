@@ -117,6 +117,41 @@ const diasNovenaSanJose = [{
     texto: "Oh benignísimo Jesús, así como has elegido por medio de tu Vicario en la tierra a tu amado padre para protector de tu Santa Iglesia Católica, así te suplicamos humildemente por intercesión de San José, nos concedas el que seamos verdaderos y sinceros católicos, que profesemos sin error la fe católica, que vivamos sin miedo una vida digna de la fe que profesamos, y que jamás puedan los enemigos ni aterrarnos con persecuciones, ni con engaños seducirnos y apartamos de la única y verdadera religión que es la Católica."
 }];
 
+// Genera el menú del Devocionario a partir de devocionarioCategorias (oraciones.js)
+function generarDevocionario() {
+    return devocionarioCategorias.map(function (cat) {
+        var itemsHtml = '';
+
+        if (cat.fuente) {
+            // Genera enlaces a partir de las claves del objeto de oraciones
+            itemsHtml = Object.keys(cat.fuente).map(function (nombre) {
+                return '<div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="' + nombre + '">' + nombre + ' <span>Ver</span></div>';
+            }).join('');
+        } else if (cat.lista) {
+            // Usa la lista predefinida (para Rosario y Novenas)
+            itemsHtml = cat.lista.map(function (item) {
+                var textoVisible = item.texto || item.valor;
+                var extra = item.extra || 'Ver';
+                return '<div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="' + item.valor + '">' + textoVisible + ' <span>' + extra + '</span></div>';
+            }).join('');
+        }
+
+        return '<div class="acordeon">' +
+            '<div class="cabecera-acordeon" data-accion="toggle-acordeon">' +
+            '<div style="display:flex; align-items:center; gap:10px;">' +
+            '<span class="material-icons-round" style="color: var(--oro);">' + cat.icono + '</span> ' + cat.titulo +
+            '</div>' +
+            '<span class="material-icons-round flecha">chevron_right</span>' +
+            '</div>' +
+            '<div class="contenido-acordeon contenido-conectado">' +
+            '<div class="contenido-caja">' +
+            itemsHtml +
+            '</div>' +
+            '</div>' +
+            '</div>';
+    }).join('');
+}
+
 const datos = {
     'Avisos Cuasiparroquiales': ``,
 
@@ -296,113 +331,7 @@ const datos = {
         </div>
     `).join(''),
 
-    'Devocionario': `
-        <div class="acordeon">
-            <div class="cabecera-acordeon" data-accion="toggle-acordeon">
-                <div style="display:flex; align-items:center; gap:10px;">
-                    <span class="material-icons-round" style="color: var(--oro);">menu_book</span> Oraciones cotidianas
-                </div>
-                <span class="material-icons-round flecha">chevron_right</span>
-            </div>
-            <div class="contenido-acordeon contenido-conectado">
-                <div class="contenido-caja">
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Señal de la Cruz">Señal de la Cruz <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Padre nuestro">Padre nuestro <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Avemaría">Avemaría <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Gloria">Gloria <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Yo Confieso">Yo Confieso <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Acto de Contrición">Acto de Contrición <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Credo">Credo <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Salve">Salve <span>Ver</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="acordeon">
-            <div class="cabecera-acordeon" data-accion="toggle-acordeon">
-                <div style="display:flex; align-items:center; gap:10px;">
-                    <span class="material-icons-round" style="color: var(--oro);">menu_book</span> Oraciones varias
-                </div>
-                <span class="material-icons-round flecha">chevron_right</span>
-            </div>
-            <div class="contenido-acordeon contenido-conectado">
-                <div class="contenido-caja">
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Ángel de la guarda">Ángel de la guarda <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Alma de Cristo">Alma de Cristo <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Angelus">Angelus <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Acuérdate">Acuérdate <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Tu pureza">Tu pureza <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="A la Sagrada Familia">A la Sagrada Familia <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="A San José">A San José <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Benedictus">Benedictus <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Magnificat">Magnificat <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Corazón de Jesús">Corazón de Jesús <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Letanías de San José">Letanías de San José <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="A San Miguel Arcángel">A San Miguel Arcángel<span>Ver</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="acordeon">
-            <div class="cabecera-acordeon" data-accion="toggle-acordeon">
-                <div style="display:flex; align-items:center; gap:10px;">
-                    <span class="material-icons-round" style="color: var(--oro);">menu_book</span> Santo Rosario
-                </div>
-                <span class="material-icons-round flecha">chevron_right</span>
-            </div>
-            <div class="contenido-acordeon contenido-conectado">
-                <div class="contenido-caja">
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Misterios Gozosos">Misterios Gozosos <span>(lun y sáb)</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Misterios Luminosos">Misterios Luminosos <span>(jueves)</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Misterios Dolorosos">Misterios Dolorosos <span>(mar y vie)</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Misterios Gloriosos">Misterios Gloriosos <span>(mie y dom)</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="acordeon">
-            <div class="cabecera-acordeon" data-accion="toggle-acordeon">
-                <div style="display:flex; align-items:center; gap:10px;">
-                    <span class="material-icons-round" style="color: var(--oro);">menu_book</span> Novenas
-                </div>
-                <span class="material-icons-round flecha">chevron_right</span>
-            </div>
-            <div class="contenido-acordeon contenido-conectado">
-                <div class="contenido-caja">
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Novena a la Virgen de Coromoto">A la Virgen de Coromoto <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Novena a San José">Novena a San José <span>Ver</span></div>
-                </div>                    
-            </div>
-        </div>
-        <div class="acordeon">
-            <div class="cabecera-acordeon" data-accion="toggle-acordeon">
-                <div style="display:flex; align-items:center; gap:10px;">
-                    <span class="material-icons-round" style="color: var(--oro)">menu_book</span> Coronillas
-                </div>
-                <span class="material-icons-round flecha">chevron_right</span>
-            </div>
-            <div class="contenido-acordeon contenido-conectado">
-                <div class="contenido-caja">
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Coronilla de San José">Coronilla de San José <span>Ver</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="acordeon">
-            <div class="cabecera-acordeon" data-accion="toggle-acordeon">
-                <div style="display:flex; align-items:center; gap:10px;">
-                    <span class="material-icons-round" style="color: var(--oro)">menu_book</span> Del Catecismo
-                </div>
-                <span class="material-icons-round flecha">chevron_right</span>
-            </div>
-            <div class="contenido-acordeon contenido-conectado">
-                <div class="contenido-caja">
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Mandamientos">Mandamientos <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Sacramentos">Sacramentos <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Obras de Misericordia Corporales">Obras de Misericordia Corporales <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Obras de Misericordia Espirituales">Obras de Misericordia Espirituales <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Preparación para la confesión">Preparación para la confesión <span>Ver</span></div>
-                    <div class="enlace-oracion" data-accion="abrir-subpanel" data-valor="Los siete dones del Espíritu Santo">Los siete dones del Espíritu Santo <span>Ver</span></div>
-                </div>
-            </div>
-        </div>
-    `,
+    'Devocionario': generarDevocionario(),
 
     'Sacramentos': [{
         nombre: 'Bautismo',
@@ -492,7 +421,7 @@ const datos = {
             </p>
             <p style="margin-top: 10px; font-size: 0.75rem; color: #888;">
                 También puedes comunicarte vía WhatsApp<br>
-                <a href="https://wa.me/584142711341" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="https://wa.me/584142711341?text=Saludos.%20%0AQuisiera%20hacer%20una%20consulta%20a%20la%20Cuasiparroquia%20Nuestra%20Se%C3%B1ora%20de%20Coromoto." target="_blank" style="text-decoration: none; color: inherit;">
                 <span style="font-size:1rem; color: var(--vinotinto);">+58 414 271 1341</span></a>
             </p>
         </div>
@@ -721,65 +650,175 @@ function renderizarAvisos(avisos) {
     return html;
 }
 
+let carruselIntervalo = null;
+let carruselIndex = 0;
+let carruselAvisos = [];
+
 async function cargarTarjetaPrincipal() {
-    //const webAppUrl = 'https://script.google.com/macros/s/AKfycbzhffrPj7V5bJ3IOWD0puAv6i5GE_i__8rc5Q7xdqgXwq8Ww5zQY9KRryAy1LkWf1Aj/exec?tipo=Principal';
     const webAppUrl = 'https://script.google.com/macros/s/AKfycbyMrRDjRxsPpkfLY_ilCaRPRfihMUnNCaNtKG94SZ8FvLpzVtHsE7qC2swibSFsnYRc/exec?tipo=Principal'
+    const contenedor = document.querySelector('.carrusel-contenedor');
+    const puntosContainer = document.getElementById('carrusel-puntos');
 
-    const tituloEl = document.getElementById('principal-titulo');
-    const contenidoEl = document.getElementById('principal-contenido');
-    const fechaEl = document.getElementById('principal-fecha');
-
-    if (!tituloEl || !contenidoEl || !fechaEl) return;
+    if (!contenedor || !puntosContainer) return;
 
     // A. Mostrar datos guardados inmediatamente (caché offline)
-    const guardado = localStorage.getItem('tarjeta_principal_json');
+    const guardado = localStorage.getItem('tarjeta_principal_carrusel_json');
     if (guardado) {
         try {
-            const datos = JSON.parse(guardado);
-            aplicarTarjetaPrincipal(datos, tituloEl, contenidoEl, fechaEl);
+            const avisos = JSON.parse(guardado);
+            if (Array.isArray(avisos) && avisos.length > 0) {
+                construirCarrusel(avisos, contenedor, puntosContainer);
+            }
         } catch (e) {
-            tituloEl.textContent = 'Cargando...';
+            // Silenciar error de caché
         }
     }
 
     // B. Fetch desde internet
     try {
-        const response = await fetch(webAppUrl);
+        const response = await fetch(webAppUrl, { signal: AbortSignal.timeout(5000) });
         const json = await response.json();
 
-        // El Apps Script genérico devuelve un array; tomamos la primera fila
-        const datos = Array.isArray(json) ? json[0] : json;
+        // Soporta array de avisos o un solo objeto (retrocompatible)
+        let avisos;
+        if (Array.isArray(json)) {
+            avisos = json.filter(d => d && (d.titulo || d.contenido));
+        } else if (json && (json.titulo || json.contenido)) {
+            avisos = [json];
+        }
 
-        // Esperamos tener al menos título o contenido
-        if (datos && (datos.titulo || datos.contenido)) {
-            aplicarTarjetaPrincipal(datos, tituloEl, contenidoEl, fechaEl);
-            localStorage.setItem('tarjeta_principal_json', JSON.stringify(datos));
+        if (avisos && avisos.length > 0) {
+            construirCarrusel(avisos, contenedor, puntosContainer);
+            localStorage.setItem('tarjeta_principal_carrusel_json', JSON.stringify(avisos));
         }
     } catch (error) {
         console.error('Error cargando tarjeta principal:', error);
-        // Si no hay caché, mostrar mensaje
-        if (!guardado) {
-            tituloEl.textContent = 'Avisos Cuasiparroquiales';
-            contenidoEl.textContent = 'Próximamente...';
+        // Si no hay caché ni datos, mostrar mensaje por defecto
+        if (!guardado || carruselAvisos.length === 0) {
+            contenedor.innerHTML = `
+                <div class="carrusel-slide activo">
+                    <h2 class="principal-titulo">Avisos Cuasiparroquiales</h2>
+                    <p class="principal-contenido">Próximamente...</p>
+                </div>`;
         }
     }
 }
 
-function aplicarTarjetaPrincipal(datos, tituloEl, contenidoEl, fechaEl) {
-    tituloEl.textContent = datos.titulo || '';
-    contenidoEl.innerHTML = (datos.contenido || '').replace(/\n/g, '<br>');
+function construirCarrusel(avisos, contenedor, puntosContainer) {
+    // Limpiar intervalo anterior si existe
+    if (carruselIntervalo) clearInterval(carruselIntervalo);
 
-    if (datos.fecha) {
-        fechaEl.textContent = datos.fecha;
+    carruselAvisos = avisos;
+    carruselIndex = 0;
+
+    // Construir slides
+    let slidesHtml = '';
+    avisos.forEach((aviso, i) => {
+        const titulo = aviso.titulo || '';
+        const contenido = (aviso.contenido || '').replace(/\n/g, '<br>');
+        const fecha = aviso.fecha || '';
+        const datetime = aviso.datetime || '';
+
+        slidesHtml += `
+            <div class="carrusel-slide${i === 0 ? ' activo' : ''}" data-index="${i}">
+                <h2 class="principal-titulo">${titulo}</h2>
+                <p class="principal-contenido">${contenido}</p>
+                <div class="noticia-meta">
+                    <div class="meta-item">
+                        <span class="material-icons-round" aria-hidden="true">calendar_today</span>
+                        <time class="principal-fecha" datetime="${datetime}">${fecha}</time>
+                    </div>
+                </div>
+            </div>`;
+    });
+    contenedor.innerHTML = slidesHtml;
+
+    // Construir puntos indicadores (solo si hay más de 1 aviso)
+    if (avisos.length > 1) {
+        let puntosHtml = '';
+        avisos.forEach((_, i) => {
+            puntosHtml += `<div class="carrusel-punto${i === 0 ? ' activo' : ''}" data-index="${i}"></div>`;
+        });
+        puntosContainer.innerHTML = puntosHtml;
+
+        // Click en puntos para cambiar slide
+        puntosContainer.querySelectorAll('.carrusel-punto').forEach(punto => {
+            punto.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const idx = parseInt(punto.dataset.index);
+                cambiarSlideCarrusel(idx);
+            });
+        });
+
+        // Iniciar auto-rotación
+        iniciarCarruselAuto();
+    } else {
+        puntosContainer.innerHTML = '';
     }
-    if (datos.datetime) {
-        fechaEl.setAttribute('datetime', datos.datetime);
-    }
+
+    // Soporte de swipe táctil
+    configurarSwipeCarrusel(contenedor);
+}
+
+function cambiarSlideCarrusel(nuevoIndex) {
+    if (carruselAvisos.length <= 1) return;
+
+    const slides = document.querySelectorAll('.carrusel-slide');
+    const puntos = document.querySelectorAll('.carrusel-punto');
+
+    // Desactivar slide y punto actual
+    if (slides[carruselIndex]) slides[carruselIndex].classList.remove('activo');
+    if (puntos[carruselIndex]) puntos[carruselIndex].classList.remove('activo');
+
+    // Actualizar índice
+    carruselIndex = nuevoIndex;
+
+    // Activar nuevo slide y punto
+    if (slides[carruselIndex]) slides[carruselIndex].classList.add('activo');
+    if (puntos[carruselIndex]) puntos[carruselIndex].classList.add('activo');
+}
+
+function iniciarCarruselAuto() {
+    if (carruselIntervalo) clearInterval(carruselIntervalo);
+    carruselIntervalo = setInterval(() => {
+        const siguiente = (carruselIndex + 1) % carruselAvisos.length;
+        cambiarSlideCarrusel(siguiente);
+    }, 5000);
+}
+
+function configurarSwipeCarrusel(contenedor) {
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const umbralSwipe = 40; // Mínimo de píxeles para considerar swipe
+
+    contenedor.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        // Pausar auto-rotación al tocar
+        if (carruselIntervalo) clearInterval(carruselIntervalo);
+    }, { passive: true });
+
+    contenedor.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diferencia = touchStartX - touchEndX;
+
+        if (Math.abs(diferencia) > umbralSwipe) {
+            if (diferencia > 0) {
+                // Swipe izquierda → siguiente
+                const siguiente = (carruselIndex + 1) % carruselAvisos.length;
+                cambiarSlideCarrusel(siguiente);
+            } else {
+                // Swipe derecha → anterior
+                const anterior = (carruselIndex - 1 + carruselAvisos.length) % carruselAvisos.length;
+                cambiarSlideCarrusel(anterior);
+            }
+        }
+
+        // Reanudar auto-rotación
+        iniciarCarruselAuto();
+    }, { passive: true });
 }
 
 async function cargarAvisosDesdeAppsScript() {
-    // RECUERDA PONER AQUÍ LA URL DE TU SCRIPT
-    //const webAppUrl = 'https://script.google.com/macros/s/AKfycbzhffrPj7V5bJ3IOWD0puAv6i5GE_i__8rc5Q7xdqgXwq8Ww5zQY9KRryAy1LkWf1Aj/exec?tipo=Avisos';
     const webAppUrl = 'https://script.google.com/macros/s/AKfycbyMrRDjRxsPpkfLY_ilCaRPRfihMUnNCaNtKG94SZ8FvLpzVtHsE7qC2swibSFsnYRc/exec?tipo=Avisos'
 
     if (btnRefrescarPanel) btnRefrescarPanel.classList.add('rotar');
