@@ -1,4 +1,4 @@
-const CACHE_NAME = 'coromoto-junio-2026-v0.17'; // Versión actualizada para limpiar caché
+const CACHE_NAME = 'coromoto-junio-2026-v0.20';
 const urlsToCache = [
     './',
     './index.html',
@@ -15,80 +15,88 @@ const urlsToCache = [
     './icono/icon-512x512.png'
 ];
 
-// Instalación: Forzamos el salto de espera
-self.addEventListener('install', event => {
-    self.skipWaiting(); // <--- IMPORTANTE
+// Instalacion: Forzamos el salto de espera
+self.addEventListener('install', function (event) {
+    self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then(cache => {
+            .then(function (cache) {
                 console.log('Cache abierta: ' + CACHE_NAME);
                 return cache.addAll(urlsToCache);
             })
     );
 });
 
-// Activación: Limpieza y reclamo de control
-self.addEventListener('activate', event => {
+// Activacion: Limpieza y reclamo de control
+self.addEventListener('activate', function (event) {
     event.waitUntil(
-        caches.keys().then(cacheNames => {
+        caches.keys().then(function (cacheNames) {
             return Promise.all(
-                cacheNames.map(cacheName => {
+                cacheNames.map(function (cacheName) {
                     if (cacheName !== CACHE_NAME) {
-                        console.log('Borrando caché antigua:', cacheName);
+                        console.log('Borrando cache antigua:', cacheName);
                         return caches.delete(cacheName);
                     }
                 })
             );
-        }).then(() => self.clients.claim()) // <--- Toma el control de la PWA abierta
+        }).then(function () {
+            self.clients.claim();
+        })
     );
 });
 
-// Estrategia: Cache con actualización en red (Stale-While-Revalidate)
-self.addEventListener('fetch', event => {
-    // 1. Solo interceptar peticiones GET
+// Estrategia: Cache con actualizacion en red (Stale-While-Revalidate)
+self.addEventListener('fetch', function (event) {
+    // Solo interceptar peticiones GET
     if (event.request.method !== 'GET') {
         return;
     }
 
-    // 2. Solo interceptar esquemas http y https (ignora chrome-extension, data:, etc.)
-    const url = new URL(event.request.url);
+    // Solo interceptar esquemas http y https
+    var url = new URL(event.request.url);
     if (!url.protocol.startsWith('http')) {
         return;
     }
 
-    // 3. Excluir las peticiones dinámicas de Google Sheets de la caché del Service Worker
-    // para permitir que script.js maneje su propia sincronización en tiempo real
+    // Excluir las peticiones dinamicas de Google Sheets de la cache
     if (url.hostname.includes('script.google.com') || url.hostname.includes('script.googleusercontent.com')) {
-        return; // Deja pasar a la red directamente sin tocar la caché
+        return;
     }
 
-    // 4. Estrategia Stale-While-Revalidate para recursos estáticos del sitio
+    // Estrategia Stale-While-Revalidate para recursos estaticos
     event.respondWith(
         caches.match(event.request)
-            .then(cachedResponse => {
+            .then(function (cachedResponse) {
                 if (cachedResponse) {
-                    // Si está en caché, lo devolvemos inmediatamente y actualizamos en segundo plano
-                    fetch(event.request).then(networkResponse => {
+                    // Revalidar en segundo plano sin bloquear la respuesta cacheada
+                    fetch(event.request).then(function (networkResponse) {
                         if (networkResponse && networkResponse.status === 200) {
-                            caches.open(CACHE_NAME).then(cache => {
+                            caches.open(CACHE_NAME).then(function (cache) {
                                 cache.put(event.request, networkResponse.clone());
                             });
                         }
-                    }).catch(() => {
-                        // Ignorar fallos de red en segundo plano (ej. si está offline)
+                    }).catch(function () {
+                        // Sin red en segundo plano: la cache sigue vigente
                     });
                     return cachedResponse;
                 }
 
-                // Si no está en caché, lo solicitamos a la red directamente
-                return fetch(event.request).then(networkResponse => {
+                // No hay cache: intentar red, con fallback offline para navegaciones
+                return fetch(event.request).then(function (networkResponse) {
                     if (networkResponse && networkResponse.status === 200) {
-                        const responseClone = networkResponse.clone();
-                        caches.open(CACHE_NAME).then(cache => {
+                        var responseClone = networkResponse.clone();
+                        caches.open(CACHE_NAME).then(function (cache) {
                             cache.put(event.request, responseClone);
                         });
                     }
                     return networkResponse;
+                }).catch(function () {
+                    // Sin red y sin cache: servir fallback para navegaciones
+                    if (event.request.mode === 'navigate') {
+                        return caches.match('./index.html');
+                    }
+                    // Para otros recursos, devolver error
+                    return new Response('', { status: 503, statusText: 'Sin conexión' });
                 });
             })
     );
