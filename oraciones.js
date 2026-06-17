@@ -27,15 +27,28 @@ const oracionesCotidianas = {
     `,
 
     "Padre nuestro": `
-        <p>Padre nuestro, que estás en el cielo, santificado sea tu Nombre; venga a nosotros tu reino; hágase tu voluntad en la tierra como en el cielo.<br>
+        <p>Padre nuestro, que estás en el cielo, <br>
+        santificado sea tu Nombre; <br>
+        venga a nosotros tu reino; <br>
+        hágase tu voluntad en la tierra como en el cielo.<br>
         <br>
-        Danos hoy nuestro pan de cada día; perdona nuestras ofensas, como también nosotros perdonamos a los que nos ofenden; no nos dejes caer en la tentación, y líbranos del mal.</p>
+        Danos hoy nuestro pan de cada día; <br>
+        perdona nuestras ofensas, <br>
+        como también nosotros perdonamos a los que nos ofenden; <br>
+        no nos dejes caer en la tentación, <br>
+        y líbranos del mal.</p>
     `,
 
     "Avemaría": `
-        <p>Dios te salve, María, llena eres de gracia; el Señor es contigo. Bendita Tú eres entre todas las mujeres, y bendito es el fruto de tu vientre, Jesús.<br>
+        <p>Dios te salve, María, <br>
+           llena eres de gracia; <br>
+           el Señor es contigo. <br>
+           Bendita Tú eres entre todas las mujeres, <br>
+           y bendito es el fruto de tu vientre, Jesús.<br>
         <br>
-        Santa María, Madre de Dios, ruega por nosotros, pecadores, ahora y en la hora de nuestra muerte.</p>
+           Santa María, Madre de Dios, <br>
+           ruega por nosotros, pecadores, <br>
+           ahora y en la hora de nuestra muerte.</p>
     `,
 
     "Gloria": `
@@ -49,34 +62,72 @@ const oracionesCotidianas = {
     `,
 
     "Yo Confieso": `
-        <p>Yo confieso ante Dios Todopoderoso, y ante ustedes hermanos que he pecado mucho de pensamiento, palabra, obra y omisión.<br>
+        <p>Yo confieso ante Dios Todopoderoso, <br>
+        y ante ustedes hermanos <br>
+        que he pecado mucho de pensamiento, <br>
+        palabra, obra y omisión.<br>
         <br>
-        Por mi culpa, por mi culpa, por mi gran culpa.<br>
+        Por mi culpa, <br>
+        por mi culpa, <br>
+        por mi gran culpa.<br>
         <br>
-        Por eso ruego a Santa María siempre Virgen, a los ángeles, a los santos y a ustedes hermanos, que intercedan por mí ante Dios, Nuestro Señor.</p>
+        Por eso ruego a Santa María siempre Virgen, <br>
+        a los ángeles, a los santos y a ustedes hermanos, <br>
+        que intercedan por mí ante Dios, Nuestro Señor.</p>
     `,
 
     "Acto de Contrición": `
-        <p>Jesús, mi Señor y Redentor: Yo me arrepiento de todos los pecados que he cometido hasta hoy, y me pesa de todo corazón, porque con ellos he ofendido a un Dios tan bueno.<br>
+        <p>Jesús, mi Señor y Redentor: <br>
+        Yo me arrepiento de todos los pecados que he cometido hasta hoy, <br>
+        y me pesa de todo corazón, <br>
+        porque con ellos he ofendido a un Dios tan bueno.<br>
         <br>
-        Propongo firmemente no volver a pecar, y confío en que, por tu infinita misericordia, me has de conceder el perdón de mis culpas y me has de llevar a la vida eterna.</p>
+        Propongo firmemente no volver a pecar, <br>
+        y confío en que, por tu infinita misericordia, <br>
+        me has de conceder el perdón de mis culpas <br>
+        y me has de llevar a la vida eterna.</p>
     `,
 
     "Credo": `
-        <p>Creo en Dios, Padre Todopoderoso, Creador del cielo y de la tierra. Creo en Jesucristo, su único Hijo, Nuestro Señor, que fue concebido por obra y gracia del Espíritu Santo, nació de Santa María Virgen, padeció bajo el poder de Poncio Pilato, fue crucificado, muerto y sepultado, descendió a los infiernos, al tercer día resucitó de entre los muertos, subió a los cielos y está sentado a la derecha de Dios, Padre todopoderoso. Desde allí ha de venir a juzgar a vivos y muertos.<br>
+        <p>Creo en Dios, Padre Todopoderoso, <br>
+        Creador del cielo y de la tierra. <br>
+        Creo en Jesucristo, su único Hijo, Nuestro Señor, <br>
+        que fue concebido por obra y gracia del Espíritu Santo, <br>
+        nació de Santa María Virgen, <br>
+        padeció bajo el poder de Poncio Pilato, <br>
+        fue crucificado, muerto y sepultado, <br>
+        descendió a los infiernos, <br>
+        al tercer día resucitó de entre los muertos, <br>
+        subió a los cielos <br>
+        y está sentado a la derecha de Dios, Padre todopoderoso. <br>
+        Desde allí ha de venir a juzgar a vivos y muertos.<br>
         <br>
-        Creo en el Espíritu Santo, la santa Iglesia católica, la comunión de los santos, el perdón de los pecados, la resurrección de la carne y la vida eterna.</p>
+        Creo en el Espíritu Santo, <br>
+        la santa Iglesia católica, <br>
+        la comunión de los santos, <br>
+        el perdón de los pecados, <br>
+        la resurrección de la carne <br>
+        y la vida eterna.</p>
     `,
 
     "Salve": `
-        <p>Dios te salve, Reina y Madre de misericordia, vida, dulzura y esperanza nuestra; Dios te salve. A Ti llamamos los desterrados hijos de Eva; a Ti suspiramos, gimiendo y llorando, en este valle de lágrimas. <br>
+        <p>Dios te salve, Reina y Madre de misericordia, <br>
+        vida, dulzura y esperanza nuestra; Dios te salve. <br>
+        A Ti llamamos los desterrados hijos de Eva; <br>
+        a Ti suspiramos, gimiendo y llorando, <br>
+        en este valle de lágrimas. <br>
         <br>
-        Ea, pues, Señora, abogada nuestra, vuelve a nosotros esos tus ojos misericordiosos; y después de este destierro muéstranos a Jesús, fruto bendito de tu vientre. <br>
+        Ea, pues, Señora, abogada nuestra, <br>
+        vuelve a nosotros esos tus ojos misericordiosos; <br>
+        y después de este destierro muéstranos a Jesús, <br>
+        fruto bendito de tu vientre. <br>
         <br>
         ¡Oh clementísima, oh piadosa, <br>
         oh dulce Virgen María! <br>
         <br>
-        Ruega por nosotros Santa Madre de Dios, para que seamos dignos de alcanzar las promesas de Nuestro Señor Jesucristo.</p>
+        Ruega por nosotros Santa Madre de Dios, <br>
+        para que seamos dignos de alcanzar <br>
+        las promesas de Nuestro Señor Jesucristo.</p>
     `,
 
 };
@@ -671,6 +722,42 @@ const oracionesCatecismo = {
     `,
 
 };
+
+
+// ==========================================================
+//  ESTRUCTURA DEL DEVOCIONARIO
+//  Define las categorías y sus oraciones para el menú.
+//  Al agregar o quitar oraciones de las constantes anteriores,
+//  el menú del devocionario se actualizará automáticamente.
+//
+//  • Usa "fuente: nombreObjeto" para categorías cuyas
+//    oraciones vienen de un objeto (las claves se usan
+//    como nombre y como data-valor en el menú).
+//  • Usa "lista: [...]" para categorías con entradas fijas
+//    donde el texto visible difiere de la clave interna.
+// ==========================================================
+const devocionarioCategorias = [
+    { titulo: 'Oraciones cotidianas', icono: 'menu_book', fuente: oracionesCotidianas },
+    { titulo: 'Oraciones varias', icono: 'menu_book', fuente: oracionesVarias },
+    {
+        titulo: 'Santo Rosario', icono: 'menu_book',
+        lista: [
+            { valor: 'Misterios Gozosos', extra: '(lun y sáb)' },
+            { valor: 'Misterios Luminosos', extra: '(jueves)' },
+            { valor: 'Misterios Dolorosos', extra: '(mar y vie)' },
+            { valor: 'Misterios Gloriosos', extra: '(mie y dom)' },
+        ]
+    },
+    {
+        titulo: 'Novenas', icono: 'menu_book',
+        lista: [
+            { valor: 'Novena a la Virgen de Coromoto', texto: 'A la Virgen de Coromoto', extra: 'Ver' },
+            { valor: 'Novena a San José', texto: 'Novena a San José', extra: 'Ver' },
+        ]
+    },
+    { titulo: 'Coronillas', icono: 'menu_book', fuente: oracionesCoronillas },
+    { titulo: 'Del Catecismo', icono: 'menu_book', fuente: oracionesCatecismo },
+];
 
 
 // ==========================================================
