@@ -1,4 +1,4 @@
-const CACHE_NAME = 'coromoto-junio-2026-v0.31';
+const CACHE_NAME = 'coromoto-junio-2026-v0.32';
 const urlsToCache = [
     './',
     './index.html',
