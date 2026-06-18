@@ -70,9 +70,10 @@ html {
     overscroll-behavior-y: none;
     margin: 0;
     padding: 0;
-    /* ESTAS DOS LÍNEAS EVITAN EL EFECTO MINIATURA EN TEXTOS */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    background-color: var(--beige-crema);
+    /* Fondo extendido para toda la pantalla */
 }
 
 body {
@@ -453,8 +454,9 @@ body::before {
 .rejilla-menu {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    flex: 1;
+    gap: 15px;
+    /* Eliminamos 'flex: 1' para evitar que se estiren hacia el infinito */
+    margin-bottom: 20px;
 }
 
 /* Estilos específicos para botones dentro de la rejilla */
@@ -462,9 +464,10 @@ body::before {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    height: 100%;
+    /* Cambiamos height: 100% por un tamaño mínimo fijo */
+    min-height: 110px;
     margin: 0;
-    padding: 10px 5px;
+    padding: 15px 5px;
 }
 
 .rejilla-menu .lista-accion-izquierda {
