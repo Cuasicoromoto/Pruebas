@@ -70,6 +70,9 @@ html {
     overscroll-behavior-y: none;
     margin: 0;
     padding: 0;
+    /* ESTAS DOS LÍNEAS EVITAN EL EFECTO MINIATURA EN TEXTOS */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
