@@ -933,16 +933,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.boton-cerrar').forEach(btn => {
         btn.addEventListener('click', () => {
-            if (btn.closest('#sub-panel'))
-                cerrarSubPanel();
-            else if (btn.closest('#panel'))
-                cerrarPanel();
+            // Solo retroceder en el historial; popstate se encarga de cerrar
+            history.back();
         }
         );
     }
     );
 
-    capaOscura.addEventListener('click', cerrarTodo);
+    capaOscura.addEventListener('click', () => {
+        // Solo retroceder en el historial; popstate se encarga de cerrar
+        history.back();
+    });
 
     if (btnRefrescarPanel) {
         btnRefrescarPanel.addEventListener('click', () => {
