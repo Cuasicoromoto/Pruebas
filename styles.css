@@ -633,16 +633,17 @@ body::before {
     display: flex;
     gap: 0.25rem;
     padding: 1rem 0;
-    border-bottom: 1px solid var(--oro-suave);
+    border-bottom: 2px solid var(--oro-suave);
     align-items: flex-start;
     position: relative;
     z-index: 1;
 }
 
+/*
 .aviso-fila:last-child {
     border-bottom: none;
 }
-
+*/
 .aviso-fecha {
     display: flex;
     flex-direction: column;
@@ -839,9 +840,9 @@ body::before {
     content: '';
     position: absolute;
     top: 0;
-    bottom: 0;
+    bottom: 5px;
     left: 24px;
-    width: 3px;
+    width: 2px;
     background: var(--oro-suave);
     z-index: 0;
 }
@@ -852,14 +853,15 @@ body::before {
 }
 
 /* Máscara blanca para ocultar la línea después del último elemento */
-.grupo-timeline .aviso-fila:last-child::after {
+.grupo-timeline .aviso-fila::after {
     content: '';
     position: absolute;
-    left: 22px;
-    width: 7px;
+    left: 0px;
+    width: 24px;
     top: 50px;
-    bottom: 0;
+    bottom: -5px;
     background: var(--blanco);
+    /*background: var(--azul);*/
     z-index: 0;
 }
 
