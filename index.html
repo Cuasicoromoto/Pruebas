@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Coromoto - App Cuasiparroquial</title>
     <meta name="description"
         content="Aplicación oficial de la Cuasiparroquia Nuestra Señora de Coromoto. Avisos, devocionario, horarios y más.">
@@ -23,7 +24,7 @@
     <!-- Cabecera -->
     <header class="cabecera-minimalista">
         <div class="linea"></div>
-        <div><span>Cuasiparroquia .C</span>
+        <div><span>Cuasiparroquia .E</span>
             <h1>Nuestra Señora de Coromoto</h1>
         </div>
     </header>
@@ -171,6 +172,20 @@
     <!-- Lógica de la aplicación -->
     <script src="oraciones.js"></script>
     <script src="script.js"></script>
+    <script>
+        /* --- Fallback viewport dinámico para PWA móvil --- */
+        (function () {
+            function setVH() {
+                var vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', vh + 'px');
+            }
+            setVH();
+            window.addEventListener('resize', setVH);
+            window.addEventListener('orientationchange', function () {
+                setTimeout(setVH, 100);
+            });
+        })();
+    </script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
