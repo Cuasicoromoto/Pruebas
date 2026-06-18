@@ -470,8 +470,6 @@ const panel = document.getElementById('panel');
 const subPanel = document.getElementById('sub-panel');
 const capaOscura = document.getElementById('capa-oscura');
 
-// Control de navegación con botón atrás
-let isNavigatingBack = false;
 const tituloPanel = document.getElementById('titulo-panel');
 const contenidoPanel = document.getElementById('contenido-panel');
 const subTitulo = document.getElementById('sub-titulo');
@@ -506,14 +504,11 @@ window.cargarDiaNovena = (diaIndex, tipo) => {
     `;
 };
 
-async function AbrirPanel(titulo) {
+async function abrirPanel(titulo) {
     tituloPanel.innerText = titulo;
     contenidoPanel.scrollTop = 0;
     panel.classList.add('abierto');
     capaOscura.classList.add('activa');
-
-    // Agregar estado al historial para controlar el botón "atrás"
-    history.pushState({ panel: true, subpanel: false }, '');
 
     if (titulo === 'Avisos Cuasiparroquiales') {
         if (btnRefrescarPanel) btnRefrescarPanel.style.display = 'inline-block';
@@ -539,7 +534,7 @@ async function AbrirPanel(titulo) {
     }
 }
 
-function AbrirSubPanel(nombre) {
+function abrirSubPanel(nombre) {
     if (!nombre)
         return;
     subTitulo.innerText = nombre;
@@ -562,51 +557,21 @@ function AbrirSubPanel(nombre) {
     `;
     subContenido.scrollTop = 0;
     subPanel.classList.add('abierto');
-
-    // Agregar estado al historial para controlar el botón "atrás"
-    history.pushState({ panel: true, subpanel: true }, '');
 }
 
 function cerrarPanel() {
-    if (!isNavigatingBack) {
-        // Si no viene del botón atrás, retroceder en el historial
-        history.back();
-        return;
-    }
-    isNavigatingBack = false;
     panel.classList.remove('abierto');
     capaOscura.classList.remove('activa');
 }
 
 function cerrarSubPanel() {
-    if (!isNavigatingBack) {
-        // Si no viene del botón atrás, retroceder en el historial
-        history.back();
-        return;
-    }
-    isNavigatingBack = false;
     subPanel.classList.remove('abierto');
 }
 
 function cerrarTodo() {
-    if (panel.classList.contains('abierto')) {
-        cerrarPanel();
-    }
-    if (subPanel.classList.contains('abierto')) {
-        cerrarSubPanel();
-    }
+    cerrarPanel();
+    cerrarSubPanel();
 }
-
-// Escuchar el botón atrás del navegador/PWA
-window.addEventListener('popstate', () => {
-    isNavigatingBack = true;
-    if (subPanel.classList.contains('abierto')) {
-        subPanel.classList.remove('abierto');
-    } else if (panel.classList.contains('abierto')) {
-        panel.classList.remove('abierto');
-        capaOscura.classList.remove('activa');
-    }
-});
 
 // Mapa para convertir el nombre del mes a número y poder hacer cálculos
 const mesesMapeo = {
@@ -903,7 +868,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('[data-abrir-panel]').forEach(el => {
         el.addEventListener('click', () => {
-            AbrirPanel(el.dataset.abrirPanel);
+            abrirPanel(el.dataset.abrirPanel);
         }
         );
     }
@@ -939,7 +904,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const abrirSubBtn = e.target.closest('[data-accion="abrir-subpanel"]');
         if (abrirSubBtn) {
-            AbrirSubPanel(abrirSubBtn.dataset.valor);
+            abrirSubPanel(abrirSubBtn.dataset.valor);
         }
 
         // Navegación interna entre paneles (ej: "puedes contactarnos" en Ancianato → Apoyar)
@@ -947,9 +912,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (enlaceNav) {
             const destino = enlaceNav.dataset.irA;
             if (destino) {
-                isNavigatingBack = true;
                 cerrarPanel();
-                setTimeout(() => AbrirPanel(destino), 350);
+                setTimeout(() => abrirPanel(destino), 350);
             }
         }
     }
