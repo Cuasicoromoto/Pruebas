@@ -1,3 +1,4 @@
+--- START OF FILE index.html ---
 <!DOCTYPE html>
 <html lang="es">
 
@@ -24,7 +25,7 @@
     <!-- Cabecera -->
     <header class="cabecera-minimalista">
         <div class="linea"></div>
-        <div><span>Cuasiparroquia .F</span>
+        <div><span>Cuasiparroquia .G</span>
             <h1>Nuestra Señora de Coromoto</h1>
         </div>
     </header>
@@ -194,18 +195,17 @@
                 navigator.serviceWorker.register(swUrl)
                     .then(reg => {
                         console.log('Service Worker registrado', reg);
-
-                        // 2. Forzamos al navegador a buscar actualizaciones en el servidor
                         reg.update();
                     })
                     .catch(err => console.log('Error registrando Service Worker', err));
             });
 
-            // 3. Detectar cuando el nuevo SW toma el control y recargar la página automáticamente
             let refreshing = false;
             navigator.serviceWorker.addEventListener('controllerchange', () => {
                 if (!refreshing) {
-                    window.location.reload();
+                    // Evitamos la recarga automática que causaba el bucle infinito en PWA
+                    console.log('El Service Worker ha sido actualizado.');
+                    // window.location.reload(); 
                     refreshing = true;
                 }
             });
