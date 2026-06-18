@@ -634,7 +634,7 @@ body::before {
     gap: 0.25rem;
     padding: 1rem 0;
     border-bottom: 1px solid var(--oro-suave);
-    align-items: center;
+    align-items: flex-start;
     position: relative;
     z-index: 1;
 }
@@ -857,8 +857,8 @@ body::before {
     position: absolute;
     left: 22px;
     width: 7px;
-    top: 50%;
-    bottom: -5px;
+    top: 50px;
+    bottom: 0;
     background: var(--blanco);
     z-index: 0;
 }
