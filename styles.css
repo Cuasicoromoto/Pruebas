@@ -76,7 +76,7 @@ body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background-color: var(--beige-crema);
     color: var(--texto);
-    height: var(--vh, 100dvh);
+    height: 100%;
     width: 100%;
     overflow: hidden;
     overscroll-behavior-y: none;
