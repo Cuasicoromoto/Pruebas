@@ -509,6 +509,7 @@ async function abrirPanel(titulo) {
     contenidoPanel.scrollTop = 0;
     panel.classList.add('abierto');
     capaOscura.classList.add('activa');
+    history.pushState({ panel: true }, '');
 
     if (titulo === 'Avisos Cuasiparroquiales') {
         if (btnRefrescarPanel) btnRefrescarPanel.style.display = 'inline-block';
@@ -557,6 +558,7 @@ function abrirSubPanel(nombre) {
     `;
     subContenido.scrollTop = 0;
     subPanel.classList.add('abierto');
+    history.pushState({ subpanel: true }, '');
 }
 
 function cerrarPanel() {
@@ -572,6 +574,16 @@ function cerrarTodo() {
     cerrarPanel();
     cerrarSubPanel();
 }
+
+// Botón atrás: cerrar el panel visible sin salir de la PWA
+window.addEventListener('popstate', () => {
+    if (subPanel.classList.contains('abierto')) {
+        subPanel.classList.remove('abierto');
+    } else if (panel.classList.contains('abierto')) {
+        panel.classList.remove('abierto');
+        capaOscura.classList.remove('activa');
+    }
+});
 
 // Mapa para convertir el nombre del mes a número y poder hacer cálculos
 const mesesMapeo = {
