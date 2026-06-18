@@ -514,8 +514,6 @@ async function abrirPanel(titulo) {
         if (btnRefrescarPanel) btnRefrescarPanel.style.display = 'inline-block';
         // Llama a la nueva función si tocamos los avisos
         await cargarAvisosDesdeAppsScript();
-        // Resetear scroll después de cargar contenido asíncrono
-        contenidoPanel.scrollTop = 0;
     } else {
         if (btnRefrescarPanel) btnRefrescarPanel.style.display = 'none';
         // Carga normal para el resto de apartados (horarios, devocionario, etc.)
@@ -845,8 +843,10 @@ async function cargarAvisosDesdeAppsScript() {
         const response = await fetch(webAppUrl);
         const avisos = await response.json();
 
-        // C. Refrescamos la pantalla con los nuevos datos filtrados
+        // C. Refrescamos la pantalla con los nuevos datos filtrados, preservando la posición del scroll
+        const scrollPos = contenidoPanel.scrollTop;
         contenidoPanel.innerHTML = renderizarAvisos(avisos);
+        contenidoPanel.scrollTop = scrollPos;
 
         // D. Guardamos el JSON crudo para la próxima vez
         localStorage.setItem('avisos_cuasiparroquiales_json', JSON.stringify(avisos));
