@@ -678,7 +678,13 @@ async function cargarTarjetaPrincipal() {
 
     // B. Fetch desde internet
     try {
-        const response = await fetch(webAppUrl, { signal: AbortSignal.timeout(5000) });
+        // CORRECCIÓN: Solución compatible para cancelar fetch en navegadores móviles antiguos
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+        const response = await fetch(webAppUrl, { signal: controller.signal });
+        clearTimeout(timeoutId); // Limpiar timeout si responde a tiempo
+
         const json = await response.json();
 
         // Soporta array de avisos o un solo objeto (retrocompatible)
