@@ -66,6 +66,7 @@
 
 html {
     overscroll-behavior-y: none;
+    overflow-x: hidden;
 }
 
 body {
@@ -73,6 +74,7 @@ body {
     min-height: 100vh;
     min-height: 100dvh;
     width: 100%;
+    overflow-x: hidden;
 
     /* Resto de tus estilos */
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
